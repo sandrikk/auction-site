@@ -6,6 +6,7 @@ import auth from './routes/auth.js';
 
 app.use("/auth", auth);
 
+
 app.get('/', (req, res) => {
   console.log(req);
   // res.send('Hello World!')
