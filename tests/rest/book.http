@@ -1,0 +1,25 @@
+### Testing to get the list of all books
+
+GET /books
+
+> {%
+client.test(
+    "Testing to get the list of all books",
+    function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    }
+);
+%}
+
+###Testing to get book with id
+
+GET /books/9999
+
+> {%
+client.test(
+    "Testing to get the list of all books",
+    function() {
+        client.assert(response.status === 404, "Response status is not 404");
+    }
+);
+%}
