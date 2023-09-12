@@ -1,6 +1,6 @@
 ### Testing to get the list of all books
 
-GET /books
+GET http://localhost:3000/books
 
 > {%
 client.test(
@@ -11,15 +11,69 @@ client.test(
 );
 %}
 
-###Testing to get book with id
+###Testing to get a book with isbn 9789027439642
 
-GET /books/9999
+GET http://localhost:3000/books/
 
 > {%
 client.test(
-    "Testing to get the list of all books",
+    "Testing to get book with isbn 9789027439642",
     function() {
-        client.assert(response.status === 404, "Response status is not 404");
+        var isbn = 9789027439642;
+        var response = client.get("http://localhost:3000/books/" + isbn);
+        client.assert(response.status === 200, "There is no book with provided ISBN.");
+    }
+);
+%}
+
+###Testing to get a book with isbn 9789027439643 (BAD WEATHER)
+
+GET http://localhost:3000/books/
+
+> {%
+client.test(
+    "Testing to get book with isbn 9789027439643 (BAD WEATHER)",
+    function() {
+        var isbn = 9789027439642;
+        var response = client.get("http://localhost:3000/books/" + isbn);
+        client.assert(response.status === 404, "There is no book with provided ISBN.");
+    }
+);
+%}
+
+### Testing to post a new book
+
+POST http://localhost:3000/books
+
+> {%
+client.test(
+    "Testing to post a new book",
+    function() {
+        var newBook = {
+            isbn: "9789027439642",
+            title: "Rework",
+            author: "Jason Fried",
+            numberOfPages: 279,
+            language: "English",
+            publisher: "Random House UK Ltd",
+            releaseDate: "1 May 2010",
+            startTime: "1 September 2023",
+            endTime: "1 October 2023"
+        };
+
+        var response = client.post("http://localhost:3000/books", {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newBook)
+        });
+
+
+        client.assert(response.status === 201, "Response status is not 201");
+
+        var responseBody = JSON.parse(response.body);
+        client.assert(responseBody.title === newBook.title, "Book title in the response does not match the expected title");
+
     }
 );
 %}
