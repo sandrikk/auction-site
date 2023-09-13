@@ -1,23 +1,51 @@
-### Testing to get the list of all bids for specific book
+### Testing to get the list of all bids for specific book with isbn 1435122941
 
-GET http://localhost:3000/books/9789027439642/bids
+GET http://localhost:3000/books/1435122941/bids
 
 > {%
 client.test(
-    "Testing to get the list of all bids for specific book with isbn 9789027439642",
+    "Testing to get the list of all bids for specific book with isbn 1435122941",
     function() {
         client.assert(response.status === 200, "Response status is not 200");
     }
 );
 %}
 
-### Testing to post a new bid
+###Testing to get a bid with id 1 for specific book with isbn 1435122941
 
-POST http://localhost:3000/bids
+GET http://localhost:3000/books/1435122941/bids/1
+
+> {%
+client.test(
+    "Testing to get bid with id 1 for specific book with isbn 1435122941",
+    function() {
+        client.assert(response.status === 200, "There is no bid with provided id for that book.");
+        client.assert(response.body.id === 1, "Expected bid ID is 1")
+    }
+);
+%}
+
+###Testing to get a bid with id 99999 for specific book with isbn 1435122941 (BAD WEATHER)
+
+GET http://localhost:3000/books/1435122941/bids/99999
+
+> {%
+client.test(
+    "Testing to get a bid with id 99999 for specific book with isbn 1435122941 (BAD WEATHER)",
+    function() {
+        client.assert(response.status === 404, "404. There is no bid with provided id for that book.");
+    }
+);
+%}
+
+### Testing to post a new bid for specific book with isbn 1435122941
+
+POST http://localhost:3000//books/1435122941/bids
 Content-Type: application/json
 
 {
-  "isbn": "9789027439642",
+  "id": "1",
+  "isbn": "1435122941",
   "username": "some user",
   "amount": 100,
   "date": "2023-09-31"
@@ -26,10 +54,123 @@ Content-Type: application/json
 
 > {%
 client.test(
-    "Testing to post a new bid",
+    "Testing to post a new bid for specific book with isbn 1435122941",
     function() {
         client.assert(response.status === 201, "Response status is not 201");
-        client.assert(response.body.title === "Rework", "Book title in the response does not match the expected title");
+        client.assert(response.body.id === 1, "Expected id - 1")
+        client.assert(response.body.amount >= 0, "The amount must be positive number");
+        client.assert(response.body.date < Date.now(), "The bid cannot be created in the future")
+        //check if the amount is higher than bids placed before
+    }
+);
+%}
+
+### Testing to post a new bid for specific book with isbn 1435122941 (BAD WEATHER)
+
+POST http://localhost:3000//books/1435122941/bids
+Content-Type: application/json
+
+{
+  "isbn": "1435122941",
+  "username": "some user",
+  "date": "2023-09-31"
+}
+
+> {%
+client.test(
+    "Testing to post a new bid for specific book with isbn 1435122941 (BAD WEATHER)",
+    function() {
+         client.assert(response.status === 500, "500. The bid object cannot be parsed correctly");
+    }
+);
+%}
+
+### Testing to put a new bid with id 1 for book with isbn 1435122941
+
+PUT http://localhost:3000/books/1435122941/bids/1
+Content-Type: application/json
+
+{
+  "id": "1",
+  "isbn": "1435122941",
+  "username": "some user",
+  "amount": 500,
+  "date": "2023-09-31"
+
+}
+
+> {%
+client.test(
+    "Testing to put a new bid with id 1 for book with isbn 1435122941",
+    function() {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(response.body.id === 1, "Expected id - 1")
+        client.assert(response.body.amount >= 0, "The amount must be positive number");
+        client.assert(response.body.date < Date.now(), "The bid cannot be created in the future")
+        //check if the amount is higher than bids placed before
+    }
+);
+%}
+
+### Testing to put a new bid with id 1 for book with isbn 1435122941 (BAD WEATHER)
+
+PUT http://localhost:3000/books/1435122941/bids/1
+Content-Type: application/json
+
+{
+  "id": "1",
+  "isbn": "1435122941",
+  "username": "some user",
+  "date": "2023-09-31"
+
+}
+
+> {%
+client.test(
+    "Testing to put a new bid with id 1 for book with isbn 1435122941",
+    function() {
+          client.assert(response.status === 400, "400. The bid object cannot be updated correctly");
+    }
+);
+%}
+
+###Testing to delete a bid with id 1 for book with isbn 1435122941
+
+DELETE http://localhost:3000/books/1435122941/bids/1
+
+> {%
+client.test(
+    "Testing to delete a bid with id 1 for book with isbn 1435122941",
+    function() {
+        client.assert(response.status === 200, "There is no bid with provided id.");
+        client.assert(response.body.id === "1", "Expected id - 1")
+        client.assert(response.body.isbn === "1435122941", "Expected isbn - 1435122941")
+    }
+);
+%}
+
+###Testing to delete a bid with id 99999 for book with isbn 1435122941 (BAD WEATHER)
+
+DELETE http://localhost:3000/books/1435122941/bids/99999
+
+> {%
+client.test(
+    "Testing to delete a bid with id 99999 for book with isbn 1435122941 (BAD WEATHER)",
+    function() {
+        client.assert(response.status === 404, "404. There is no bid with provided id.");
+    }
+);
+%}
+
+###Testing to delete a bid with id 1 for book with isbn 0 (BAD WEATHER)
+
+DELETE http://localhost:3000/books/0/bids/1
+
+> {%
+client.test(
+    "Testing to delete a bid with id 1 for book with isbn 0 (BAD WEATHER)",
+    function() {
+        client.assert(response.status === 404, "404. There is no book with provided ISBN.");
     }
 );
 %}
