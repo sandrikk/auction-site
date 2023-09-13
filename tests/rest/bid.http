@@ -1,0 +1,35 @@
+### Testing to get the list of all bids for specific book
+
+GET http://localhost:3000/books/9789027439642/bids
+
+> {%
+client.test(
+    "Testing to get the list of all bids for specific book with isbn 9789027439642",
+    function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    }
+);
+%}
+
+### Testing to post a new bid
+
+POST http://localhost:3000/bids
+Content-Type: application/json
+
+{
+  "isbn": "9789027439642",
+  "username": "some user",
+  "amount": 100,
+  "date": "2023-09-31"
+
+}
+
+> {%
+client.test(
+    "Testing to post a new bid",
+    function() {
+        client.assert(response.status === 201, "Response status is not 201");
+        client.assert(response.body.title === "Rework", "Book title in the response does not match the expected title");
+    }
+);
+%}

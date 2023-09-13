@@ -1,0 +1,15 @@
+### Testing to get the list of all books
+
+GET http://localhost:3000/books
+Content-Type: application/json
+
+> {%
+client.test(
+    "Testing to get the list of all books",
+    function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    }
+);
+%}
+
+
