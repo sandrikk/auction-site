@@ -1,15 +1,102 @@
-### Testing to get the list of all books
+### Testing to get the list of all users
 
-GET http://localhost:3000/books
-Content-Type: application/json
+GET http://localhost:3000/users
 
 > {%
 client.test(
-    "Testing to get the list of all books",
+    "Testing to get the list of all users",
     function() {
         client.assert(response.status === 200, "Response status is not 200");
     }
 );
 %}
 
+###Testing to get a user with username 'some_user'
 
+GET http://localhost:3000/users/some_user
+
+> {%
+client.test(
+    "Testing to get a user with username 'some_user'",
+    function() {
+        client.assert(response.status === 200, "There is no user with provided username.");
+        client.assert(response.body.username === "some_user", "Expected username - some_user")
+    }
+);
+%}
+
+###Testing to get a user with username 'some_userrr' (BAD WEATHER)
+
+GET http://localhost:3000/users/some_userrr
+
+> {%
+client.test(
+    "Testing to get a user with username 'some_userrr' (BAD WEATHER)",
+    function() {
+        client.assert(response.status === 404, "404. There is no user with provided username.");
+    }
+);
+%}
+
+### Testing to post a new user
+
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "username": "some_user",
+  "password": "password",
+  "isAdmin": "true"
+}
+
+
+> {%
+client.test(
+    "Testing to post a new user",
+    function() {
+        client.assert(response.status === 201, "Response status is not 201");
+        client.assert(response.username === "some_user", "Expected username - some_user")
+    }
+);
+%}
+
+### Testing to post a new user (BAD WEATHER)
+
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "password": "password",
+  "isAdmin": "true"
+}
+
+
+> {%
+client.test(
+    "Testing to post a new user",
+    function() {
+        client.assert(response.status === 500, "500. The book object cannot be parsed correctly");
+    }
+);
+%}
+
+### Testing to put a new user
+
+PUT http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "username": "some_userrr",
+  "password": "password",
+  "isAdmin": "true"
+}
+
+> {%
+client.test(
+    "Testing to put a new user",
+    function() {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(response.body.username === "some_userrr", "Users username in the response does not match the updated username");
+    }
+);
+%}
