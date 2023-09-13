@@ -11,34 +11,29 @@ client.test(
 );
 %}
 
-###Testing to get a book with isbn 9789027439642
+###Testing to get a book with isbn 1435122941
 
-GET http://localhost:3000/books/
-Content-Type: application/json
+GET http://localhost:3000/books/1435122941
 
 > {%
 client.test(
-    "Testing to get book with isbn 9789027439642",
+    "Testing to get book with isbn 1435122941",
     function() {
-        var isbn = 9789027439642;
-        var response = client.get("http://localhost:3000/books/" + isbn);
         client.assert(response.status === 200, "There is no book with provided ISBN.");
+        client.assert(response.body.isbn === "1435122941", "Expected isbn - 1435122941")
     }
 );
 %}
 
-###Testing to get a book with isbn 9789027439643 (BAD WEATHER)
+###Testing to get a book with isbn 0 (BAD WEATHER)
 
-GET http://localhost:3000/books/
-Content-Type: application/json
+GET http://localhost:3000/books/0
 
 > {%
 client.test(
-    "Testing to get book with isbn 9789027439643 (BAD WEATHER)",
+    "Testing to get book with isbn 0 (BAD WEATHER)",
     function() {
-        var isbn = 9789027439642;
-        var response = client.get("http://localhost:3000/books/" + isbn);
-        client.assert(response.status === 404, "There is no book with provided ISBN.");
+        client.assert(response.status === 404, "404. There is no book with provided ISBN.");
     }
 );
 %}
@@ -49,15 +44,15 @@ POST http://localhost:3000/books
 Content-Type: application/json
 
 {
-  "isbn": "9789027439642",
-  "title": "Rework",
-  "author": "Jason Fried",
-  "numberOfPages": 279,
+  "isbn": "1435122941",
+  "title": "Alices Adventures in Wonderland",
+  "author": "Lewis Carroll",
+  "numberOfPages": 1165,
   "language": "English",
-  "publisher": "Random House UK Ltd",
-  "releaseDate": "2010-05-01",
-  "startTime": "2023-09-01",
-  "endTime": "2023-10-01"
+  "publisher": "Barnes & Noble",
+  "releaseDate": "2011-01-01",
+  "startTime": "2023-09-01 15:43:00",
+  "endTime": "2023-10-01 15:43:00"
 }
 
 > {%
@@ -65,7 +60,119 @@ client.test(
     "Testing to post a new book",
     function() {
         client.assert(response.status === 201, "Response status is not 201");
-        client.assert(response.body.title === "Rework", "Book title in the response does not match the expected title");
+        client.assert(response.body.title === "Alices Adventures in Wonderland", "Book title in the response does not match the expected title");
+        //the book already exists
+        client.assert(response.body.releaseDate < Date.now(), "Book was released in the future? Cool");
+        client.assert(response.body.endTime > Date.now(), "Auction for this book cannot be finished already.")
+
+    }
+);
+%}
+
+### Testing to post a new book (BAD WEATHER)
+
+POST http://localhost:3000/books
+Content-Type: application/json
+
+{
+  "title": "Alices Adventures in Wonderland",
+  "author": "Lewis Carroll",
+  "numberOfPages": 1165,
+  "language": "English",
+  "publisher": "Barnes & Noble",
+  "releaseDate": "2011-01-01",
+  "startTime": "2023-09-01 15:43:00",
+  "endTime": "2023-10-01 15:43:00"
+}
+
+> {%
+client.test(
+    "Testing to post a new book (BAD WEATHER)",
+    function() {
+        client.assert(response.status === 500, "500. The book object cannot be parsed correctly");
+
+    }
+);
+%}
+
+### Testing to put a new book
+
+PUT http://localhost:3000/books
+Content-Type: application/json
+
+{
+  "isbn": "1435122941",
+  "title": "Alices Adventures in Wonderland and Beyond",
+  "author": "Lewis Carroll",
+  "numberOfPages": 1165,
+  "language": "English",
+  "publisher": "Barnes & Noble",
+  "releaseDate": "2011-01-01",
+  "startTime": "2023-09-01 15:43:00",
+  "endTime": "2023-10-01 15:43:00"
+}
+
+> {%
+client.test(
+    "Testing to put a new book",
+    function() {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(response.body.title === "Alices Adventures in Wonderland and Beyond", "Book title in the response does not match the updated title");
+        client.assert(response.body.releaseDate < Date.now(), "Book was released in the future? Cool");
+        client.assert(response.body.endTime > Date.now(), "Auction for this book cannot be finished already.")
+
+    }
+);
+%}
+
+### Testing to put a new book (BAD WEATHER)
+
+PUT http://localhost:3000/books
+Content-Type: application/json
+
+{
+  "title": "Alices Adventures in Wonderland and Beyond",
+  "author": "Lewis Carroll",
+  "numberOfPages": 1165,
+  "language": "English",
+  "publisher": "Barnes & Noble",
+  "releaseDate": "2011-01-01",
+  "startTime": "2023-09-01 15:43:00",
+  "endTime": "2023-10-01 15:43:00"
+}
+
+> {%
+client.test(
+    "Testing to put a new book",
+    function() {
+        client.assert(response.status === 400, "400. The book object cannot be updated correctly");
+    }
+);
+%}
+
+###Testing to delete a book with isbn 1435122941
+
+DELETE http://localhost:3000/books/1435122941
+
+> {%
+client.test(
+    "Testing to delete a book with isbn 1435122941",
+    function() {
+        client.assert(response.status === 200, "There is no book with provided ISBN.");
+        client.assert(response.body.isbn === "1435122941", "Expected isbn - 1435122941")
+    }
+);
+%}
+
+###Testing to delete a book with isbn 0 (BAD WEATHER)
+
+DELETE http://localhost:3000/books/0
+
+> {%
+client.test(
+    "Testing to delete book with isbn 0 (BAD WEATHER)",
+    function() {
+        client.assert(response.status === 404, "404. There is no book with provided ISBN.");
     }
 );
 %}
