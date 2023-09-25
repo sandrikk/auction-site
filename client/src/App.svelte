@@ -2,10 +2,9 @@
   import router from 'page';
 
   import Home from "./pages/Home.svelte";
-  import About from "./pages/About.svelte";
+  import Login from "./pages/Login.svelte";
   import Header from "./components/Header.svelte";
-  import SearchBar from "./components/SearchBar.svelte";
-  import Filter from "./components/FilterSection.svelte";
+  import Register from "./pages/Register.svelte";
 
   let page;
   let params;
@@ -15,8 +14,12 @@
     page = Home;
     currentRoute = ctx.pathname;
   });
-  router('/about', (ctx) => {
-    page = About;
+  router('/login', (ctx) => {
+    page = Login;
+    currentRoute = ctx.pathname;
+  });
+  router('/register', (ctx) => {
+    page = Register;
     currentRoute = ctx.pathname;
   });
 
@@ -27,80 +30,23 @@
   <Header active={currentRoute} />
 </header>
 <main>
-
-  <div class="sidebar">
-    <Filter/>
-  </div>
-
-  <div class="content">
-    <SearchBar />
-    <svelte:component this={page} {params} />
-  </div>
-
+  <svelte:component active={currentRoute} this={page} {params} />
 </main>
 
 <style>
-
-
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background-color: var(--bg-primary); /* Choose a background color for your header */
+    padding: 1rem 2rem;
+    background-color: var(--bg-primary);
   }
 
   main {
     display: flex;
-    padding: 1em;
+    padding: 1rem 2rem;
     margin: 0 auto;
   }
 
-  main .content {
-    width: 70vw;
-  }
-
-  main .sidebar {
-    width: 30vw;
-    color: var(--bg-primary);
-  }
-
-  b,
-  strong {
-    font-weight: bolder;
-  }
-
-  a {
-    color: inherit;
-    background-color: transparent;
-  }
-
-  ul {
-    list-style-type: none;
-  }
-
-  img {
-    border-style: none;
-    max-width: 100%;
-    height: auto;
-  }
-
-  p {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin: 1rem 0 0;
-  }
-
-  input,
-  button {
-    all: unset;
-    font-size: inherit;
-    font-family: inherit;
-    line-height: 1;
-  }
-
-  button {
-    cursor: pointer;
-  }
 
 </style>
