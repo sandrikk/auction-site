@@ -1,7 +1,72 @@
 <script>
-    import Counter from '../lib/Counter.svelte';
-
+    import Filter from "../components/Filter.svelte";
+    import SearchBar from "../components/SearchBar.svelte";
+    import FilterSection from "../components/FilterSection.svelte";
+    import Book from "../components/Book.svelte";
+    import BookList from "../components/BookList.svelte";
+    export let active;
     export let params;
+
 </script>
 
-<Counter />
+<div class="sidebar">
+    <FilterSection />
+</div>
+
+<div class="content">
+
+    <SearchBar />
+    <BookList />
+
+</div>
+
+<style>
+
+    .content {
+        width: 80vw;
+        margin: 1rem;
+    }
+
+    .sidebar {
+        width: 20vw;
+        color: var(--bg-primary);
+    }
+
+    b,
+    strong {
+        font-weight: bolder;
+    }
+
+    a {
+        color: inherit;
+        background-color: transparent;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    img {
+        border-style: none;
+        max-width: 100%;
+        height: auto;
+    }
+
+    p {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin: 1rem 0 0;
+    }
+
+    input,
+    button {
+        all: unset;
+        font-size: inherit;
+        font-family: inherit;
+        line-height: 1;
+    }
+
+    button {
+        cursor: pointer;
+    }
+</style>

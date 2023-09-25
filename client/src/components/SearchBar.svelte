@@ -4,6 +4,7 @@
     .searchbar {
         width: 100%;
         padding: 10px;
+        margin-bottom: 1rem;
         border: none;
         border-radius: 5px;
         outline: none;

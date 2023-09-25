@@ -3,19 +3,20 @@
     import logo from '../assets/logo-no-background.png'
 
 </script>
-<!--
-<nav>
-    <ul>
-        <li><a class:active={active === "/"} href="/">Home</a></li>
-        <li><a class:active={active === "/about"} href="/about">About</a></li>
-    </ul>
-</nav>
--->
 
 <div >
-    <img src={logo} alt="logo" class="logo" />
+    <a class:active={active === "/"} href="/">
+        <img src={logo} alt="logo" class="logo" />
+    </a>
 </div>
-<button>Login</button>
+
+<nav>
+    <ul>
+        <li><a class:active={active === "/login"} href="/login">Login</a></li>
+    </ul>
+</nav>
+
+
 
 
 <style>
@@ -32,9 +33,10 @@
         padding: 0.5rem 1rem;
         background-color: var(--bg-secondary); /* Choose a background color for your button */
         color: white;
+        border-radius: 5px;
     }
 
     button:hover {
-        background-color: #0056b3; /* Choose a different color for hover effect */
+        background-color: var(--details); /* Choose a different color for hover effect */
     }
 </style>
