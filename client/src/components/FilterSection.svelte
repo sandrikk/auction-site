@@ -5,7 +5,10 @@
 
 <div class="filter-section">
     <!-- Language Filter -->
-    <Filter title="Language"/>
+    <Filter title="Category" options={["Arts & Photography", "Biographies & Memoirs", "Business & Careers", "Calendars, Diaries & Annuals", "Children's Books", "Comics & Graphic Novels", "Computing & Internet"]} />
+    <Filter title="Language" options={["English", "Spanish", "German", "Dutch"]} />
+    <Filter title="Cover" options={["Hardcover", "Paperback", "Board book", "Large print"]} />
+
 
 </div>
 
@@ -13,6 +16,7 @@
     label {
         display: block;
     }
+
 </style>
 
 
