@@ -6,18 +6,54 @@
     export let buttonLabel;
     export let buttonName;
     export let includeEmail = false;
+
+
+    import { onMount } from 'svelte';
+
+    let email = '';
+    let password = '';
+
+    onMount(() => {
+    // Example of form submission
+    // You can modify this to match your form submission logic
+    async function handleSubmit() {
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        if (response.ok) {
+            // Successful login, you can redirect or show a success message
+            console.log('Login successful');
+        } else {
+            // Failed login, handle the error
+            console.error('Login failed');
+        }
+    }
+
+    // Example of handling form submission
+    document.querySelector('.form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    handleSubmit();
+    });
+});
 </script>
 
 <div class="page">
     <div class="form-container">
         <form class="form">
             <!-- You can customize the form inputs here as needed -->
-            <input type="text" placeholder="username"/>
-            <input type="password" placeholder="password"/>
+            <input type="text" placeholder="email" name="email" />
+            <input type="password" placeholder="password" name="password" />
 
+            <!--
             {#if includeEmail}
                 <input type="text" placeholder="email address"/>
             {/if}
+            -->
 
             <Button name={buttonName} />
             <p class="message">{formTitle} <a href="{anchorHref}">{buttonLabel}</a></p>
