@@ -1,22 +1,14 @@
 [
   {
     "email": "user1@example.com",
-    "password": "$2a$12$KWTQFtJhvM2s.b1WsWG3..FRJkEaylIquGQ/dLraI648zj7iadS/6"
+    "password": "$2b$12$M.ofDZiKMkSvcOKOpNEJgOd.umGESh2mjEWBtMaQDNhAIbXYCgNXO"
   },
   {
     "email": "user2@example.com",
-    "password": "$2a$12$SsKjIoV6Ci7cyOWSFCnF8ObC2fsYY0rgK9R1cs.ParxlaCbRD/3NK"
+    "password": "$2b$12$5YUXxNnU8PxeIXr295/DX.UQoUG0CzGwUTrJ07h0zC8l2Du6f9BqC"
   },
   {
     "email": "user3@example.com",
-    "password": "$2a$12$qw3oGMoupVlqqtXlQqM6uexuWxbAlhXYUOpIN8iEmCtbhlEZ.Zlo2"
-  },
-  {
-    "email": "user4@example.com",
-    "password": "$2a$12$pXH.ZauZ.aumUMg9YsbIMeJJKJJTcjrj3/JZJlFGOmrQqYa3qcO7m"
-  },
-  {
-    "email": "user5@example.com",
-    "password": "$2a$12$KG0zCIGzDy/cbGzmEmi.Fee0yJeEz8wOhHp7riBNpcKBvgFKEDuna"
+    "password": "$2b$12$Nhn77nMOXP8EORA3nAtbru0fGW19Vm3hB9kqplj6VCZG5.bXCcKg."
   }
 ]

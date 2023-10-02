@@ -2,7 +2,7 @@
     export let name;
 </script>
 
-<button>{name}</button>
+<button type="submit" >{name}</button>
 
 <style>
     button {
