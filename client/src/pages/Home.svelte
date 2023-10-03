@@ -29,7 +29,6 @@
 
     .sidebar {
         width: 20vw;
-        color: var(--bg-primary);
     }
 
     b,

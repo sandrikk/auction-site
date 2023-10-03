@@ -1,4 +1,6 @@
 <script>
+    import Button from "./Button.svelte";
+
     export let active;
     import logo from '../assets/logo-no-background.png'
 
@@ -11,8 +13,8 @@
 </div>
 
 <nav>
-    <ul>
-        <li><a class:active={active === "/login"} href="/login">Login</a></li>
+    <ul class="menu">
+        <li><a class="login" class:active={active === "/login"} href="/login">Login</a></li>
     </ul>
 </nav>
 
@@ -21,22 +23,21 @@
 
 <style>
 
-    a.active {
+    .menu .login {
+        text-transform: uppercase;
+        background: var(--details);
+        width: 100%;
+        padding: 10px 15px;
+        border: 0;
         font-weight: bold;
+        font-size: 14px;
+    }
+    .menu .login:hover {
+        background: var(--details);
+        border: 0;
     }
 
     .logo {
         width: 7rem;
-    }
-
-    button {
-        padding: 0.5rem 1rem;
-        background-color: var(--bg-secondary); /* Choose a background color for your button */
-        color: white;
-        border-radius: 5px;
-    }
-
-    button:hover {
-        background-color: var(--details); /* Choose a different color for hover effect */
     }
 </style>

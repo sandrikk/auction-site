@@ -5,6 +5,7 @@
   import Login from "./pages/Login.svelte";
   import Header from "./components/Header.svelte";
   import Register from "./pages/Register.svelte";
+  import Footer from "./components/Footer.svelte";
 
   let page;
   let params;
@@ -32,6 +33,9 @@
 <main>
   <svelte:component active={currentRoute} this={page} {params} />
 </main>
+<footer>
+  <Footer />
+</footer>
 
 <style>
   header {
@@ -39,14 +43,17 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: var(--bg-secondary);
-    color: var(--details);
   }
 
   main {
     display: flex;
     padding: 1rem 2rem;
     margin: 0 auto;
+  }
+
+  footer {
+    color: #000000;
+    background-color: var(--details);
   }
 
 

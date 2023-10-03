@@ -64,7 +64,7 @@
     .form-container {
         position: relative;
         z-index: 1;
-        background: var(--bg-primary);
+        background: var(--bg-secondary);
         max-width: 360px;
         margin: 0 auto 100px;
         padding: 45px;
@@ -84,6 +84,6 @@
         font-size: 12px;
     }
     .form .message a {
-        color: var(--bg-secondary);
+        color: #000000;
     }
 </style>
