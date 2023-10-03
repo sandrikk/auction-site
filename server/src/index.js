@@ -5,9 +5,14 @@ import login from './routes/login.js';
 import cors from 'cors';
 
 const app = express();
-app.use(cors());
 
+//Define a CORS configuration that allows requests only from http://localhost:5173
+const corsOptions = {
+  origin: 'http://localhost:5173',
+};
 
+//Use the custom CORS configuration
+app.use(cors(corsOptions));
 
 
 const port = 3000;
