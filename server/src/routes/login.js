@@ -9,7 +9,7 @@ router.get('', (req, res) => {
     res.status(200).send('helooo');
 });
 
-router.post('', isLoggedIn, isAdmin, (req, res) => {
+router.post('', isLoggedIn, (req, res) => {
     // Authentication succeeded, you can perform further actions here
     res.status(200).send('Login successful');
 });

@@ -5,7 +5,7 @@
     export let formTitle;
     export let buttonLabel;
     export let buttonName;
-    export let includeEmail = false;
+    export let apiUrl; // Add apiUrl as a prop
 
     import { onMount } from 'svelte';
 
@@ -14,14 +14,13 @@
 
     onMount(() => {
         async function handleSubmit() {
-
             const emailInput = document.querySelector('input[name="email"]');
             const passwordInput = document.querySelector('input[name="password"]');
 
             email = emailInput.value;
             password = passwordInput.value;
 
-            const response = await fetch('http://localhost:3000/login', {
+            const response = await fetch(apiUrl, { // Use apiUrl from the prop
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,15 +29,12 @@
             });
 
             if (response.status === 200) {
-
                 console.log('Login successful');
             } else {
-
                 console.error('Login failed');
             }
         }
 
-        // Example of handling form submission
         document.querySelector('.form').addEventListener('submit', (event) => {
             event.preventDefault();
             handleSubmit();
@@ -52,12 +48,6 @@
 
             <input type="text" placeholder="email" name="email" />
             <input type="password" placeholder="password" name="password" />
-
-            <!--
-            {#if includeEmail}
-                <input type="text" placeholder="email address"/>
-            {/if}
-            -->
 
             <Button name={buttonName} />
             <p class="message">{formTitle} <a href="{anchorHref}">{buttonLabel}</a></p>

@@ -1,54 +1,27 @@
-// is-logged-in.js
-import bcrypt from "bcrypt";
-import fs from "fs";
+import jwt from 'jsonwebtoken';
 
-// Read the users.json file
-const usersFilePath = 'src/json/users.json';
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+const secretKey = 'default-secret';
 
-const isLoggedIn = async (req, res, next) => {
-    const { email, password } = req.body;
+const isLoggedIn = (req, res, next) => {
+    //Check Authorization header
+    const token = req.headers.authorization;
 
-    const user = users.find((user) => user.email === email);
-
-    if (!user) {
-        return res.status(401).send({
-            message: 'User not found',
-            storedEmail: null,
-            receivedEmail: email,
-            storedPassword: null,
-            receivedPassword: password,
-        });
+    if (!token) {
+        return res.status(401).json({ message: 'Unauthorized' });
     }
 
-    try {
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        if (passwordMatch) {
-            return res.status(200).send({
-                message: 'Login successful',
-                storedEmail: user.email,
-                receivedEmail: email,
-                storedPassword: user.password,
-                receivedPassword: password,
-            });
+    //Verify the JWT token
+    jwt.verify(token, secretKey, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ message: 'Invalid token' });
         }
-    } catch (error) {
-        console.error('Error comparing passwords:', error);
-        return res.status(500).send('Internal Server Error');
-    }
 
-    // If passwords do not match
-    return res.status(401).send({
-        message: 'Incorrect password',
-        storedEmail: user.email,
-        receivedEmail: email,
-        storedPassword: user.password,
-        receivedPassword: password,
+        //Assign the payload to req.user
+        req.user = decoded;
+
+        //Call the next middleware
+        next();
     });
-
 };
 
 export default isLoggedIn;
-
-
-

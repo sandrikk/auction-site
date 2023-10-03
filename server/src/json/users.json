@@ -10,5 +10,25 @@
   {
     "email": "user3@example.com",
     "password": "$2b$12$Nhn77nMOXP8EORA3nAtbru0fGW19Vm3hB9kqplj6VCZG5.bXCcKg."
+  },
+  {
+    "email": "user5@example.com",
+    "password": "password1"
+  },
+  {
+    "email": "userrr@example.com",
+    "password": "$2b$12$0xcsVO3cEzqZY8rX2XvyQ.ahZLNB4bTN3hyluCpcjbd77uAhBZ.F."
+  },
+  {
+    "email": "userrrrrr@example.com",
+    "password": "$2b$12$cRZnopglv9sk6C.Oas3sJe7poJuTPIRmHVD4r/Pf5t7MYTS/Q.Hqq"
+  },
+  {
+    "email": "userrrrrrrrrr@example.com",
+    "password": "$2b$12$0AMPp/ofiwXe5w2yZrkXF.oNkWlTKU9omPTKTRlWhlfbA7jCswKrm"
+  },
+  {
+    "email": "user33@example.com",
+    "password": "$2b$12$g/BLLti3fbKrDCrI3PjvBOd0K4Q/gpQoTQ3xXb.vsnM48TCOv97c."
   }
 ]

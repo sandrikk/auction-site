@@ -39,7 +39,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-secondary);
+    color: var(--details);
   }
 
   main {

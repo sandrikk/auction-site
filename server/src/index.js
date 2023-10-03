@@ -2,6 +2,8 @@ import express from 'express';
 import auth from './routes/auth.js';
 import books from './routes/books.js';
 import login from './routes/login.js';
+import users from './routes/users.js';
+import tokens from './routes/tokens.js';
 import cors from 'cors';
 
 const app = express();
@@ -23,6 +25,8 @@ app.use(express.json());
 app.use("/auth", auth);
 app.use("/books", books);
 app.use("/login", login);
+app.use("/users", users);
+app.use("/tokens", tokens);
 
 
 app.get('/', (req, res) => {
