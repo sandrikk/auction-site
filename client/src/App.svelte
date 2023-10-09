@@ -6,6 +6,7 @@
   import Header from "./components/Header.svelte";
   import Register from "./pages/Register.svelte";
   import Footer from "./components/Footer.svelte";
+  import BookInfo from "./pages/BookInfo.svelte";
 
   let page;
   let params;
@@ -21,6 +22,10 @@
   });
   router('/register', (ctx) => {
     page = Register;
+    currentRoute = ctx.pathname;
+  });
+  router('/bookInfo', (ctx) => {
+    page = BookInfo;
     currentRoute = ctx.pathname;
   });
 

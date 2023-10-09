@@ -16,7 +16,7 @@ router.post('', async (req, res) => {
     }
 
     if (!validatePassword(password)) {
-        return res.status(400).json({ error: 'Password must be at least 8 characters long' });
+        return res.status(400).json({ error: 'Password must be at least 5 characters long' });
     }
 
     //Check if the email is already in the file

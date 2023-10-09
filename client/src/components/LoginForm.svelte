@@ -1,41 +1,61 @@
-<!-- LoginForm.svelte -->
 <script>
-    import Button from "./Button.svelte";
+    import router from 'page';
+    import { tokenStore } from "../stores/tokenStore.js";
 
-    export let apiUrl;
     let email = '';
     let password = '';
+    let errorMessage = '';
 
-    async function handleLoginSubmit() {
-        //Handle login form submission
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
+    const handleSubmit = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/tokens", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
 
-        if (response.status === 200) {
-            console.log('Login successful');
-        } else {
-            console.error('Login failed');
+            console.log('Response Status:', response.status);
+
+            if (response.status === 201) {
+                console.log('Login successful');
+                const data = await response.json();
+                const token = `Bearer ${data.token}`; // Add "Bearer" schema to the token
+                tokenStore.set(token);
+                router("/")
+
+            } else {
+                const data = await response.json();
+                console.error('Login failed:', data.error || 'Unknown error');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            errorMessage = 'An error occurred';
         }
-    }
+    };
+
 </script>
+
 
 <div class="page">
     <div class="form-container">
-        <form class="form" on:submit={handleLoginSubmit}>
-            <!-- Login form inputs -->
-            <input type="text" placeholder="email" name="email" />
-            <input type="password" placeholder="password" name="password" />
+        <form class="form" on:submit|preventDefault={handleSubmit}>
+            <!-- Bind form inputs to variables -->
+            <input type="text" placeholder="email" name="email" bind:value={email} />
+            <input type="password" placeholder="password" name="password" bind:value={password} />
 
-            <Button name="Login" />
-            <p class="message"><a href="/register">Not registered?</a></p>
+            <button type="submit">Login</button>
+
+            {#if errorMessage}
+                <p class="error-message">{errorMessage}</p>
+            {/if}
+
+            <p class="message"><a href="">Didn't register yet?</a></p>
         </form>
     </div>
 </div>
+
 
 <style>
     .page {

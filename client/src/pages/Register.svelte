@@ -1,6 +1,5 @@
 <script>
-    import Form from "../components/Form.svelte";
     export let active;
 </script>
 
-<Form formTitle="Create an account" buttonLabel="Already registered?" buttonName="Create an account" anchorHref="/login" includeEmail=true apiUrl="http://localhost:3000/users" />
+<!--<Form formTitle="Create an account" buttonLabel="Already registered?" buttonName="Create an account" anchorHref="/login" includeEmail=true apiUrl="http://localhost:3000/users" />-->

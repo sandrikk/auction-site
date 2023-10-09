@@ -1,20 +1,33 @@
 <script>
-    import Button from "./Button.svelte";
+    import router from "page";
 
     export let active;
     import logo from '../assets/logo-no-background.png'
+    import {tokenStore} from "../stores/tokenStore.js";
+
+    const handleLogout = async () => {
+        tokenStore.set('');
+        router("/login");
+    };
 
 </script>
 
 <div >
-    <a class:active={active === "/"} href="/">
+    <a href="/">
         <img src={logo} alt="logo" class="logo" />
     </a>
 </div>
 
 <nav>
     <ul class="menu">
-        <li><a class="login" class:active={active === "/login"} href="/login">Login</a></li>
+        <li><a class:active={active === "/bids"} href="/bids">Bids</a></li>
+        <li><a class:active={active === "/books"} href="/books">Books</a></li>
+        <li><a class:active={active === "/users"} href="/books">Users</a></li>
+        {#if $tokenStore === ''}
+            <li><a class="login" class:active={active === "/login"} href="/login">Login</a></li>
+        {:else}
+            <li><a class="login" on:click={handleLogout}>Logout</a></li>
+        {/if}
     </ul>
 </nav>
 
@@ -22,6 +35,11 @@
 
 
 <style>
+
+    .menu {
+        display: flex;
+        gap: 1rem;
+    }
 
     .menu .login {
         text-transform: uppercase;

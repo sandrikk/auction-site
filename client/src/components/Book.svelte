@@ -1,7 +1,22 @@
+<script>
+    export let bookData;
+</script>
+
+
 <article class="book">
-    <h2>
-        <a href="">BookTitle</a>
-    </h2>
+    <h1>{bookData.title}</h1>
+    <h2>{bookData.author}</h2>
+    <div class="book-details">
+        <p>Category: {bookData.category}</p>
+        <p>Language: {bookData.language}</p>
+        <p>Cover: {bookData.cover}</p>
+        <p>Publisher: {bookData.publisher}</p>
+        <p>Pages: {bookData.numberOfPages}</p>
+        <p>Release date: {bookData.releaseDate}</p>
+        <p>Start time: {bookData.startTime}</p>
+        <p>End time: {bookData.endTime}</p>
+
+    </div>
 </article>
 
 <style>

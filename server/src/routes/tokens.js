@@ -34,18 +34,16 @@ router.post('', async (req, res) => {
         return res.status(401).json({ error: 'Invalid password' });
     }
 
-    // Create a JWT token
-    const privateKey = 'default-secret';
+    //Create a JWT token
+    const privateKey = 'fvsjbherbheirbrhvfvkcvnkcvkdvkcv';
     jwt.sign({ email }, privateKey, { algorithm: 'HS256' }, (err, token) => {
         if (err) {
             console.error('Error creating token:', err);
             return res.status(500).json({ error: 'Failed to create token' });
         }
 
-        const bearerToken = `Bearer ${token}`;
-
         res.status(201)
-            .header('Authorization', bearerToken)
+            .header('Authorization', token)
             .json({ message: 'Token created successfully', token });
     });
 
