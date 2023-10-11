@@ -1,4 +1,4 @@
 //hash
 //compare
-//sign - tokens.js
+//sign - tokenRouter.js
 //verify - is-logged-in

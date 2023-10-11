@@ -1,3 +1,7 @@
+<script>
+
+</script>
+
 <input class="searchbar" type="text" placeholder="Search for books...">
 
 <style>
@@ -8,7 +12,7 @@
         border: none;
         border-radius: 5px;
         outline: none;
-        color: var(--bg-secondary);
+        color: var(--bg-primary);
 
     }
 

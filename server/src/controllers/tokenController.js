@@ -1,13 +1,11 @@
-import express from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import validator from 'validator';
 import fs from 'fs';
-
-const router = express.Router();
 const usersFilePath = 'src/json/users.json';
 
-router.post('', async (req, res) => {
+
+export function addToken(req, res) {
     const { email, password } = req.body;
 
     //Validate email and password
@@ -28,7 +26,7 @@ router.post('', async (req, res) => {
     }
 
     //Verify passwords using bcrypt
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
         return res.status(401).json({ error: 'Invalid password' });
@@ -46,8 +44,7 @@ router.post('', async (req, res) => {
             .header('Authorization', token)
             .json({ message: 'Token created successfully', token });
     });
-
-});
+}
 
 function validateEmail(email) {
     return validator.isEmail(email);
@@ -56,5 +53,3 @@ function validateEmail(email) {
 function validatePassword(password) {
     return validator.isLength(password, { min: 5 });
 }
-
-export default router;

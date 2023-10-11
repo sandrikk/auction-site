@@ -18,15 +18,15 @@
     </a>
 </div>
 
-<nav>
+<nav class="navigation">
     <ul class="menu">
-        <li><a class:active={active === "/bids"} href="/bids">Bids</a></li>
         <li><a class:active={active === "/books"} href="/books">Books</a></li>
-        <li><a class:active={active === "/users"} href="/books">Users</a></li>
+        <li><a class:active={active === "/bids"} href="/bids">Bids</a></li>
+        <li><a class:active={active === "/users"} href="/users">Users</a></li>
         {#if $tokenStore === ''}
             <li><a class="login" class:active={active === "/login"} href="/login">Login</a></li>
         {:else}
-            <li><a class="login" on:click={handleLogout}>Logout</a></li>
+            <li><a class="logout" on:click={handleLogout}>Logout</a></li>
         {/if}
     </ul>
 </nav>
@@ -41,7 +41,7 @@
         gap: 1rem;
     }
 
-    .menu .login {
+    .menu .login, .logout {
         text-transform: uppercase;
         background: var(--details);
         width: 100%;
@@ -49,9 +49,10 @@
         border: 0;
         font-weight: bold;
         font-size: 14px;
+        color: var(--bg-primary);
     }
-    .menu .login:hover {
-        background: var(--details);
+    .menu .login:hover, .logout:hover {
+        background: var(--details-hover);
         border: 0;
     }
 

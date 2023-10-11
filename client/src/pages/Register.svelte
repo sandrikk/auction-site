@@ -1,5 +1,7 @@
 <script>
+    import RegisterForm from "../components/RegisterForm.svelte";
     export let active;
+    export let currentRoute;
 </script>
 
-<!--<Form formTitle="Create an account" buttonLabel="Already registered?" buttonName="Create an account" anchorHref="/login" includeEmail=true apiUrl="http://localhost:3000/users" />-->
+<RegisterForm active={currentRoute}/>

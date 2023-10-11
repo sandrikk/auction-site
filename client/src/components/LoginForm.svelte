@@ -51,7 +51,7 @@
                 <p class="error-message">{errorMessage}</p>
             {/if}
 
-            <p class="message"><a href="">Didn't register yet?</a></p>
+            <p class="message"><a href="/register">Didn't register yet?</a></p>
         </form>
     </div>
 </div>

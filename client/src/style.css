@@ -5,6 +5,7 @@
     --bg-primary: #0A2520;
     --bg-secondary: #FFF;
     --details: #F6FA1D;
+    --details-hover: #dde11a;
     --text: #FFF;
     /*#F6FA1D*/
 }
@@ -33,6 +34,8 @@ body {
 
 a {
     text-decoration: none;
+    color: var(--text);
+    cursor: pointer;
 }
 
 ul {

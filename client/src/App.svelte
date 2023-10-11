@@ -7,6 +7,8 @@
   import Register from "./pages/Register.svelte";
   import Footer from "./components/Footer.svelte";
   import BookInfo from "./pages/BookInfo.svelte";
+  import Books from "./pages/Books.svelte";
+  import Users from "./pages/Users.svelte";
 
   let page;
   let params;
@@ -24,8 +26,17 @@
     page = Register;
     currentRoute = ctx.pathname;
   });
-  router('/bookInfo', (ctx) => {
+  router('/bookInfo/:isbn', (ctx) => {
     page = BookInfo;
+    currentRoute = ctx.pathname;
+    params = ctx.params;
+  });
+  router('/books', (ctx) => {
+    page = Books;
+    currentRoute = ctx.pathname;
+  });
+  router('/users', (ctx) => {
+    page = Users;
     currentRoute = ctx.pathname;
   });
 
@@ -59,6 +70,10 @@
   footer {
     color: #000000;
     background-color: var(--details);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
   }
 
 

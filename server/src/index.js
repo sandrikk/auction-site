@@ -1,8 +1,7 @@
 import express from 'express';
-import auth from './routes/auth.js';
-import books from './routes/books.js';
-import users from './routes/users.js';
-import tokens from './routes/tokens.js';
+import bookRouter from './routers/bookRouter.js';
+import userRouter from './routers/userRouter.js';
+import tokenRouter from './routers/tokenRouter.js';
 import cors from 'cors';
 
 const app = express();
@@ -24,16 +23,10 @@ const port = 3000;
 app.use(express.json());
 
 
-app.use("/auth", auth);
-app.use("/books", books);
-app.use("/users", users);
-app.use("/tokens", tokens);
+app.use("/books", bookRouter);
+app.use("/users", userRouter);
+app.use("/tokens", tokenRouter);
 
-
-app.get('/', (req, res) => {
-  console.log(req);
-  res.json({ msg: "hello world"});
-})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

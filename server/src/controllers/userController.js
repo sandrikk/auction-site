@@ -1,13 +1,16 @@
-import express from 'express';
-import fs from 'fs';
-import validator from 'validator';
-import bcrypt from 'bcrypt';
-
-const router = express.Router();
+import fs from "fs";
+import validator from "validator";
+import bcrypt from "bcrypt";
 const usersFilePath = 'src/json/users.json';
 const saltRounds = 12;
 
-router.post('', async (req, res) => {
+
+export function getAllUsers (req, res) {
+    const users = readUsersFile();
+    res.status(200).json(users);
+}
+
+export function addUser (req,res) {
     const { email, password } = req.body;
 
     //Validate email and password
@@ -27,7 +30,7 @@ router.post('', async (req, res) => {
 
     try {
         //Hash the password using bcrypt
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
+        const hashedPassword = bcrypt.hash(password, saltRounds);
 
         //Store the user
         const user = { email, password: hashedPassword };
@@ -39,13 +42,11 @@ router.post('', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
     }
-});
+}
 
-router.get('', (req, res) => {
-    //Read the users.json file and send the users as the response
-    const users = readUsersFile();
-    res.status(200).json(users);
-});
+function readUsersFile() {
+    return JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+}
 
 function validateEmail(email) {
     return validator.isEmail(email);
@@ -55,12 +56,6 @@ function validatePassword(password) {
     return validator.isLength(password, { min: 5 });
 }
 
-function readUsersFile() {
-    return JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
-}
-
 function writeUsersFile(users) {
     fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2), 'utf8');
 }
-
-export default router;
