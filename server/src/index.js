@@ -7,15 +7,12 @@ import cors from 'cors';
 const app = express();
 
 //Define a CORS configuration that allows requests only from http://localhost:5173
-/*
 const corsOptions = {
   origin: 'http://localhost:5173',
 };
 
- */
-
 //Use the custom CORS configuration
-app.use(cors());
+app.use(cors(corsOptions));
 
 
 const port = 3000;

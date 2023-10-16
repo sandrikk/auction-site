@@ -18,8 +18,24 @@
     <p>Loading...</p>
 {:then books}
     <div class="book-list">
-        {#each books as book (book.isbn)}
-                <a href={`/bookInfo/${book.isbn}`}>
+        {#if searchTerm === ""}
+            {#each books as book (book.isbn)}
+                    <a href={`/bookInfo/${book.isbn}`}>
+                            <div class="book">
+                                <div class="image-container">
+                                    <img src="{book.image}" alt="book-image">
+                                </div>
+                                <h1>{book.title}</h1>
+                                <h2>{book.author}</h2>
+                            </div>
+                    </a>
+            {/each}
+
+        {:else}
+            {#each books as book (book.isbn)}
+                {#if book.title.toLowerCase().includes(searchTerm.toLowerCase())}
+
+                    <a href={`/bookInfo/${book.isbn}`}>
                         <div class="book">
                             <div class="image-container">
                                 <img src="{book.image}" alt="book-image">
@@ -27,8 +43,11 @@
                             <h1>{book.title}</h1>
                             <h2>{book.author}</h2>
                         </div>
-                </a>
-        {/each}
+                    </a>
+                {/if}
+            {/each}
+        {/if}
+
     </div>
 {:catch error}
     <p>Error!! {error}</p>

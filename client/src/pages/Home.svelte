@@ -4,15 +4,8 @@
     import BookList from "../components/BookList.svelte";
     export let active;
     export let params;
-    let searchTerm = "";
-    let filteredBooks = [];
+    let searchTerm = "catcher";
 
-    const searchBooks = () => {
-        return filteredBooks = bookData.filter(book => {
-            let bookTitle = book.title.toLowerCase();
-            return bookTitle.includes(searchTerm.toLowerCase())
-        });
-    }
 </script>
 
 <div class="sidebar">
@@ -21,8 +14,9 @@
 
 <div class="content">
 
-    <SearchBar bind:searchTerm on:input={searchBooks} />
+    <SearchBar bind:searchTerm />
     <BookList {searchTerm} />
+    <p>{searchTerm}</p>
 
 </div>
 
