@@ -32,3 +32,9 @@
 {:catch error}
     <p>Error!! {error}</p>
 {/await}
+
+<style>
+    img {
+        max-width: 300px;
+    }
+</style>

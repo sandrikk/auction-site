@@ -19,10 +19,7 @@
     <div class="user-list">
         {#each users as user (user.id)}
             <div class="user">
-                <div class="image-container">
-                    <img src="{user.image}" alt="book-image">
-                </div>
-                <h1>{user.username}</h1>
+                <h1>{user.email}</h1>
             </div>
         {/each}
     </div>

@@ -1,4 +1,5 @@
 <script>
+    export let searchTerm;
 
     async function getBooks() {
         // Fetch the JSON data from your books.json file
@@ -18,15 +19,15 @@
 {:then books}
     <div class="book-list">
         {#each books as book (book.isbn)}
-            <a href={`/bookInfo/${book.isbn}`}>
-                    <div class="book">
-                        <div class="image-container">
-                            <img src="{book.image}" alt="book-image">
+                <a href={`/bookInfo/${book.isbn}`}>
+                        <div class="book">
+                            <div class="image-container">
+                                <img src="{book.image}" alt="book-image">
+                            </div>
+                            <h1>{book.title}</h1>
+                            <h2>{book.author}</h2>
                         </div>
-                        <h1>{book.title}</h1>
-                        <h2>{book.author}</h2>
-                    </div>
-            </a>
+                </a>
         {/each}
     </div>
 {:catch error}

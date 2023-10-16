@@ -1,8 +1,9 @@
 <script>
+    export let searchTerm = "";
 
 </script>
 
-<input class="searchbar" type="text" placeholder="Search for books...">
+<input class="searchbar" bind:value={searchTerm} type="text" placeholder="Search for books...">
 
 <style>
     .searchbar {

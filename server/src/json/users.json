@@ -1,26 +1,14 @@
 [
   {
     "id": 1,
-    "email": "user1@example.com",
-    "password": "$2b$12$M.ofDZiKMkSvcOKOpNEJgOd.umGESh2mjEWBtMaQDNhAIbXYCgNXO",
-    "isAdmin": true
-  },
-  {
-    "id": 2,
-    "email": "user2@example.com",
-    "password": "$2b$12$5YUXxNnU8PxeIXr295/DX.UQoUG0CzGwUTrJ07h0zC8l2Du6f9BqC",
+    "email": "usertest@example.com",
+    "password": "$2b$12$j56x8J7rY92mLnJh5MVlb.REEfHIgqMaJ9o2hNjHS16RJEpfNVXn6",
     "isAdmin": false
   },
   {
-    "email": "usertest@example.com",
-    "password": {}
-  },
-  {
+    "id": 2,
     "email": "admintest@example.com",
-    "password": {}
-  },
-  {
-    "email": "usertestneww@example.com",
-    "password": "$2b$12$HF76O03V9pQl62daHoF8BO3rCu.FzC3rQVDVHupvoPNbMNHI5ElV2"
+    "password": "$2b$12$R2f8D/LJZ0jGGNTIrDi7QepnpfYifAl4S56vjr2NkZdcyeu6hT29a",
+    "isAdmin": true
   }
 ]
