@@ -18,5 +18,9 @@
   {
     "email": "admintest@example.com",
     "password": {}
+  },
+  {
+    "email": "usertestneww@example.com",
+    "password": "$2b$12$HF76O03V9pQl62daHoF8BO3rCu.FzC3rQVDVHupvoPNbMNHI5ElV2"
   }
 ]

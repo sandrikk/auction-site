@@ -10,37 +10,37 @@ export function getAllUsers (req, res) {
     res.status(200).json(users);
 }
 
-export function addUser (req,res) {
-    const { email, password } = req.body;
+export async function addUser(req, res) {
+    const {email, password} = req.body;
 
     //Validate email and password
     if (!validateEmail(email)) {
-        return res.status(400).json({ error: 'Invalid email address' });
+        return res.status(400).json({error: 'Invalid email address'});
     }
 
     if (!validatePassword(password)) {
-        return res.status(400).json({ error: 'Password must be at least 5 characters long' });
+        return res.status(400).json({error: 'Password must be at least 5 characters long'});
     }
 
     //Check if the email is already in the file
     const users = readUsersFile();
     if (users.find(user => user.email === email)) {
-        return res.status(400).json({ error: 'Email is already registered' });
+        return res.status(400).json({error: 'Email is already registered'});
     }
 
     try {
         //Hash the password using bcrypt
-        const hashedPassword = bcrypt.hash(password, saltRounds);
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         //Store the user
-        const user = { email, password: hashedPassword };
+        const user = {email, password: hashedPassword};
         users.push(user);
         writeUsersFile(users);
 
         //Return 201 message: User + user.email + registered successfully
-        res.status(201).json({ message: 'User ' + user.email + ' registered successfully' });
+        res.status(201).json({message: 'User ' + user.email + ' registered successfully'});
     } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({error: 'Internal Server Error'});
     }
 }
 
