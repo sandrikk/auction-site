@@ -3,7 +3,7 @@
     "isbn": 9780451203592,
     "title": "To Kill a Mockingbird",
     "author": "Harper Lee",
-    "category": "Fiction",
+    "category": "Classic Literature",
     "language": "English",
     "cover": "Paperback",
     "publisher": "Penguin Books",
@@ -11,13 +11,15 @@
     "releaseDate": "1960-07-11T00:00:00Z",
     "startTime": "2023-09-05T10:00:00Z",
     "endTime": "2023-09-05T11:30:00Z",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
+    "thumbnail2": "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg"
   },
   {
     "isbn": 9780744800160,
     "title": "The Catcher in the Rye",
     "author": "J.D. Salinger",
-    "category": "Fiction",
+    "category": "Classic Literature",
     "language": "English",
     "cover": "Hardcover",
     "publisher": "Little, Brown and Company",
@@ -31,7 +33,7 @@
     "isbn": 9780743273565,
     "title": "The Great Gatsby",
     "author": "F. Scott Fitzgerald",
-    "category": "Fiction",
+    "category": "Science Fiction & Fantasy",
     "language": "English",
     "cover": "Paperback",
     "publisher": "Scribner",
@@ -45,7 +47,7 @@
     "isbn": 9781511852287,
     "title": "Pride and Prejudice",
     "author": "Jane Austen",
-    "category": "Classic",
+    "category": "Classic Literature",
     "language": "English",
     "cover": "Hardcover",
     "publisher": "CreateSpace Independent Publishing Platform",
@@ -59,7 +61,7 @@
     "isbn": 9780802716094,
     "title": "The Hobbit",
     "author": "J.R.R. Tolkien",
-    "category": "Fantasy",
+    "category": "Science Fiction & Fantasy",
     "language": "English",
     "cover": "Hardcover",
     "publisher": "Houghton Mifflin Harcourt",
@@ -73,7 +75,7 @@
     "isbn": 9781610620953,
     "title": "Don Quixote",
     "author": "Miguel de Cervantes",
-    "category": "Classic",
+    "category": "Classic Literature",
     "language": "Spanish",
     "cover": "Hardcover",
     "publisher": "Royal Spanish Academy",
@@ -82,5 +84,35 @@
     "startTime": "2023-09-05T10:00:00Z",
     "endTime": "2023-09-05T11:30:00Z",
     "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQG0tewZzbYGsFL5J2aKudubl6WEtre46QhAxu_pvUZYG9V2Qc1tnGU4JPHczu1TI_nEu38w2ib874dyRezeuLnJn3Kp9ZId2N21FDhTN0h&usqp=CAc"
+  },
+
+  {
+    "isbn": 9781610420953,
+    "title": "The House of the Vampire",
+    "author": "George Sylvester Viereck",
+    "category": "Science Fiction & Fantasy",
+    "language": "English",
+    "cover": "Hardcover",
+    "publisher": "Moffat, Yard & Company",
+    "numberOfPages": 213,
+    "releaseDate": "1907",
+    "startTime": "2023-09-05T10:00:00Z",
+    "endTime": "2023-09-05T11:30:00Z",
+    "image": "https://sothebys-md.brightspotcdn.com/dims4/default/3d3f179/2147483647/strip/true/crop/775x1298+0+0/resize/800x1340!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2Fea%2F22%2Fae122afb41e2823d2bb31052acb0%2Fgeorge-viereck-the-house-of-the-vampire-first-edition.jpg"
+  },
+
+  {
+    "isbn": 9781610745253,
+    "title": "Alice's Abenteuer im Wunderland",
+    "author": "Lewis Carroll [Charles Lutwidge Dodgson]",
+    "category": "Children's Books",
+    "language": "German",
+    "cover": "Hardcover",
+    "publisher": "Macmillan & Co.",
+    "numberOfPages": 178,
+    "releaseDate": "1869",
+    "startTime": "2023-09-05T10:00:00Z",
+    "endTime": "2023-09-05T11:30:00Z",
+    "image": "https://sothebys-md.brightspotcdn.com/dims4/default/6e7bc21/2147483647/strip/true/crop/759x759+0+0/resize/800x800!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2Fef%2Fc1%2Fb8bbf5c646e3a69a48d9b1466b42%2Flewis-carroll-alices-abenteuer-im-wunderland-first-edition.png"
   }
 ]

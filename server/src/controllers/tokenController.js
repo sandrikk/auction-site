@@ -33,8 +33,8 @@ export function addToken(req, res) {
     }
 
     //Create a JWT token
-    const privateKey = 'fvsjbherbheirbrhvfvkcvnkcvkdvkcv';
-    jwt.sign({ email }, privateKey, { algorithm: 'HS256' }, (err, token) => {
+    const secret = 'fvsjbherbheirbrhvfvkcvnkgndhghdrjtfkyugfjdhtgrrsehtrdyufkylfkjrdthserashtrdjytkfuytjdrhsetrdfkuyjtdhrtscvkdvkcv';
+    jwt.sign({ email }, secret, { algorithm: 'HS256' }, (err, token) => {
         if (err) {
             console.error('Error creating token:', err);
             return res.status(500).json({ error: 'Failed to create token' });

@@ -6,5 +6,6 @@ const router = express.Router();
 router.get('', bookController.getAllBooks);
 
 router.get('/:isbn', bookController.getBookByIsbn);
+router.get('/category', bookController.getBooksByCategory);
 
 export default router;

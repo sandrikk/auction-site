@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const secretKey = 'default-secret';
+const secret = 'dfrdhvdernjgtfbhvdbernjtgufyvhdhbefrjgfuivyhdfjrntkgifbuhvdrjgtfubhvdjrgtufbhvdrjgtbufhvdnrgtjbvhfdng';
 
 const isLoggedIn = (req, res, next) => {
     //Check Authorization header
@@ -11,7 +11,7 @@ const isLoggedIn = (req, res, next) => {
     }
 
     //Verify the JWT token
-    jwt.verify(token, secretKey, (err, decoded) => {
+    jwt.verify(token, secret, (err, decoded) => {
         if (err) {
             return res.status(401).json({ message: 'Invalid token' });
         }

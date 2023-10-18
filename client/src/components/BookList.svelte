@@ -1,9 +1,31 @@
 <script>
+    import {filterStore} from "../stores/filterStore.js";
+
     export let searchTerm;
 
-    async function getBooks() {
+    async function getBooks(category, language, cover) {
+        let query = '';
+
+        let queryOptions = [];
+
+        if (category) {
+            queryOptions.push('category=' + category);
+        }
+
+        if (language) {
+            queryOptions.push('language=' + language);
+        }
+
+        if (cover) {
+            queryOptions.push('cover=' + cover);
+        }
+
+        if (queryOptions.length !== 0) {
+            query = '?' + queryOptions.join('&');
+        }
+
         // Fetch the JSON data from your books.json file
-        const response = await fetch('http://localhost:3000/books/');
+        const response = await fetch('http://localhost:3000/books' + query);
         if (response.ok) {
             // Parse the JSON data and assign it to the 'books' variable
             return response.json();
@@ -14,40 +36,23 @@
 
 </script>
 
-{#await getBooks()}
+{#await getBooks($filterStore.category, $filterStore.language, $filterStore.cover)}
     <p>Loading...</p>
 {:then books}
     <div class="book-list">
-        {#if searchTerm === ""}
-            {#each books as book (book.isbn)}
-                    <a href={`/bookInfo/${book.isbn}`}>
-                            <div class="book">
-                                <div class="image-container">
-                                    <img src="{book.image}" alt="book-image">
-                                </div>
-                                <h1>{book.title}</h1>
-                                <h2>{book.author}</h2>
-                            </div>
-                    </a>
-            {/each}
-
-        {:else}
-            {#each books as book (book.isbn)}
-                {#if book.title.toLowerCase().includes(searchTerm.toLowerCase())}
-
-                    <a href={`/bookInfo/${book.isbn}`}>
-                        <div class="book">
-                            <div class="image-container">
-                                <img src="{book.image}" alt="book-image">
-                            </div>
-                            <h1>{book.title}</h1>
-                            <h2>{book.author}</h2>
+        {#each books as book (book.isbn)}
+            {#if book.title.toLowerCase().includes(searchTerm.toLowerCase())}
+                <a href={`/bookInfo/${book.isbn}`}>
+                    <div class="book">
+                        <div class="image-container">
+                            <img src="{book.image}" alt="book-image">
                         </div>
-                    </a>
-                {/if}
-            {/each}
-        {/if}
-
+                        <h1>{book.title}</h1>
+                        <h2>{book.author}</h2>
+                    </div>
+                </a>
+            {/if}
+        {/each}
     </div>
 {:catch error}
     <p>Error!! {error}</p>

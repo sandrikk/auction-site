@@ -4,7 +4,7 @@
     import BookList from "../components/BookList.svelte";
     export let active;
     export let params;
-    let searchTerm = "catcher";
+    let searchTerm = "";
 
 </script>
 
@@ -16,7 +16,6 @@
 
     <SearchBar bind:searchTerm />
     <BookList {searchTerm} />
-    <p>{searchTerm}</p>
 
 </div>
 
