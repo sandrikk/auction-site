@@ -45,7 +45,7 @@
                 <a href={`/bookInfo/${book.isbn}`}>
                     <div class="book">
                         <div class="image-container">
-                            <img src="{book.image}" alt="book-image">
+                            <img src="{book.images[0]}" alt="book-image">
                         </div>
                         <h1>{book.title}</h1>
                         <h2>{book.author}</h2>

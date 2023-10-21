@@ -5,9 +5,9 @@
 
 <div class="filter-section">
     <!-- Language Filter -->
-    <Filter title="Category" options={["Arts & Photography", "Business & Careers", "Science Fiction & Fantasy", "Health, Family & Lifestyle", "Children's Books", "Comics & Graphic Novels", "Computing & Internet"]} />
-    <Filter title="Language" options={["English", "Spanish", "German", "Dutch"]} />
-    <Filter title="Cover" options={["Hardcover", "Paperback", "Board book", "Large print"]} />
+    <Filter title="Category" options={["Arts", "Fantasy", "Classic Literature", "Children's Books", "Comics", "Novel", "Maps", "Drama"]} />
+    <Filter title="Language" options={["English", "Spanish", "German", "French"]} />
+    <Filter title="Cover" options={["Hardcover", "Paperback", "Large print"]} />
 
 
 </div>

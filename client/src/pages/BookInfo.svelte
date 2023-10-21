@@ -1,135 +1,112 @@
 <script>
-
-    import Book from "../components/Book.svelte";
-    import Button from "../components/Button.svelte";
-    import {onMount} from "svelte";
+    let book = null;
+    let slideIndex = 0;
 
     export let params;
 
     async function getBookByIsbn() {
-        // Fetch the JSON data from your books.json file
+
         const response = await fetch('http://localhost:3000/books/' + params.isbn);
         if (response.ok) {
-            // Parse the JSON data and assign it to the 'books' variable
-            return response.json();
+            // Parse the JSON data and assign it to the 'book' variable
+            book = await response.json();
+        } else {
+            throw { error: 'Something went wrong!' };
         }
 
-        throw {error: 'Something went wrong!'}
     }
 
+    function nextSlide() {
+        if (book && book.images) {
+            slideIndex = (slideIndex + 1) % book.images.length;
+        }
+    }
 
+    function prevSlide() {
+        if (book && book.images) {
+            slideIndex = (slideIndex - 1 + book.images.length) % book.images.length;
+        }
+    }
 </script>
-
-<!--<Book />-->
 
 {#await getBookByIsbn()}
     <p>Loading...</p>
-{:then book}
-
-        <div class="book-layout">
-            <div class="image-slider">
-                <img src="{book.image}" alt="book-image">
-            </div>
-            <div class="book-description">
-                <h1>{book.title}</h1>
-                <h2>{book.author}</h2>
-            </div>
-            <div class="book-biding">
-                <p>Biding</p>
-            </div>
+{:then}
+    <div class="book-layout">
+        <div class="image-slider">
+            {#each book.images as image, i (image)}
+                <div class="mySlides fade" class:index={i} style="display: {i === slideIndex ? 'block' : 'none'}">
+                    <img src={image} class="book-image">
+                </div>
+            {/each}
+            <a class="prev" on:click={prevSlide}>&#10094;</a>
+            <a class="next" on:click={nextSlide}>&#10095;</a>
         </div>
-
-
+        <div class="book-description">
+            <h1>{book.title}</h1>
+            <h2>{book.author}</h2>
+            <p><strong>Category:</strong> {book.category}</p>
+            <p><strong>Language:</strong> {book.language}</p>
+            <p><strong>Cover:</strong> {book.cover}</p>
+            <p><strong>Publisher:</strong> {book.publisher}</p>
+            <p><strong>Number of Pages:</strong> {book.numberOfPages}</p>
+            <p><strong>Release Date:</strong> {book.releaseDate}</p>
+        </div>
+        <div class="book-biding">
+            <p>Biding</p>
+        </div>
+    </div>
 {:catch error}
-    <p>Error!! {error}</p>
+    <p>Error: {error}</p>
 {/await}
 
 <style>
-
     .book-layout {
         display: flex;
         justify-content: space-between;
-        width: 100%;
+        align-items: center;
+        padding: 20px;
     }
 
-
-    img {
-        max-width: 300px;
-        height: auto;
-    }
-
-    .thumbnail img{
-        max-width: 100px
-    }
-
-
-    /* Slideshow container */
-    .slideshow-container {
-        max-width: 1000px;
+    .image-slider {
+        width: 50%;
         position: relative;
-        margin: auto;
     }
 
-    /* Hide the images by default */
     .mySlides {
         display: none;
     }
 
-    /* Next & previous buttons */
+    .book-image {
+        width: 300px;
+        height: 400px;
+    }
+
     .prev, .next {
-        cursor: pointer;
         position: absolute;
         top: 50%;
-        width: auto;
-        margin-top: -22px;
-        padding: 16px;
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
-        transition: 0.6s ease;
-        border-radius: 0 3px 3px 0;
-        user-select: none;
+        transform: translateY(-50%);
+        font-size: 24px;
+        cursor: pointer;
+        padding: 8px 16px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
     }
 
-    /* Position the "next button" to the right */
+    .prev {
+        left: 0;
+    }
+
     .next {
         right: 0;
-        border-radius: 3px 0 0 3px;
     }
 
-    /* On hover, add a black background color with a little bit see-through */
-    .prev:hover, .next:hover {
-        background-color: rgba(0,0,0,0.8);
+    .book-description {
+        width: 40%;
     }
 
-    /* The dots/bullets/indicators */
-    .dot {
-        cursor: pointer;
-        height: 15px;
-        width: 15px;
-        margin: 0 2px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.6s ease;
+    h1, h2 {
+        margin: 0;
     }
-
-    .active, .dot:hover {
-        background-color: #717171;
-    }
-
-    /* Fading animation */
-    .fade {
-        animation-name: fade;
-        animation-duration: 1.5s;
-    }
-
-    @keyframes fade {
-        from {opacity: .4}
-        to {opacity: 1}
-    }
-
-
-
-
 </style>
