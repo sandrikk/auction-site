@@ -59,12 +59,13 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
+    height: 13vh;
   }
 
   main {
     display: flex;
     padding: 1rem 2rem;
-    margin: 0 auto;
+    min-height: 75vh;
   }
 
   footer {
@@ -74,6 +75,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
+    height: 12vh;
   }
 
 

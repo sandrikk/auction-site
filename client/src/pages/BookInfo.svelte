@@ -1,6 +1,8 @@
 <script>
+    import Slider from "../components/Slider.svelte";
+    import Loading from "../components/Loading.svelte";
     let book = null;
-    let slideIndex = 0;
+
 
     export let params;
 
@@ -15,33 +17,14 @@
         }
 
     }
-
-    function nextSlide() {
-        if (book && book.images) {
-            slideIndex = (slideIndex + 1) % book.images.length;
-        }
-    }
-
-    function prevSlide() {
-        if (book && book.images) {
-            slideIndex = (slideIndex - 1 + book.images.length) % book.images.length;
-        }
-    }
 </script>
 
 {#await getBookByIsbn()}
-    <p>Loading...</p>
+    <Loading />
 {:then}
     <div class="book-layout">
-        <div class="image-slider">
-            {#each book.images as image, i (image)}
-                <div class="mySlides fade" class:index={i} style="display: {i === slideIndex ? 'block' : 'none'}">
-                    <img src={image} class="book-image">
-                </div>
-            {/each}
-            <a class="prev" on:click={prevSlide}>&#10094;</a>
-            <a class="next" on:click={nextSlide}>&#10095;</a>
-        </div>
+        <Slider {book}/>
+
         <div class="book-description">
             <h1>{book.title}</h1>
             <h2>{book.author}</h2>
@@ -64,46 +47,17 @@
     .book-layout {
         display: flex;
         justify-content: space-between;
-        align-items: center;
         padding: 20px;
-    }
-
-    .image-slider {
-        width: 50%;
-        position: relative;
-    }
-
-    .mySlides {
-        display: none;
-    }
-
-    .book-image {
-        width: 300px;
-        height: 400px;
-    }
-
-    .prev, .next {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 24px;
-        cursor: pointer;
-        padding: 8px 16px;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: #fff;
-        border: none;
-    }
-
-    .prev {
-        left: 0;
-    }
-
-    .next {
-        right: 0;
+        width: 100%;
+        gap: 1rem;
     }
 
     .book-description {
-        width: 40%;
+        width: 50%;
+    }
+
+    .book-biding {
+        width: 25%;
     }
 
     h1, h2 {

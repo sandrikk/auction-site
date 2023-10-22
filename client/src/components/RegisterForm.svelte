@@ -1,6 +1,7 @@
 <script>
     import router from 'page';
     import { tokenStore } from "../stores/tokenStore.js";
+    import Button from "./Button.svelte";
 
     let email = '';
     let password = '';
@@ -45,7 +46,7 @@
             <input type="text" placeholder="email" name="email" bind:value={email} />
             <input type="password" placeholder="password" name="password" bind:value={password} />
 
-            <button type="submit">Login</button>
+            <Button type="submit" text="Register" />
 
             {#if errorMessage}
                 <p class="error-message">{errorMessage}</p>

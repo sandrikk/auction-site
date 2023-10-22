@@ -1,5 +1,6 @@
 <script>
     import {filterStore} from "../stores/filterStore.js";
+    import Loading from "./Loading.svelte";
 
     export let searchTerm;
 
@@ -37,7 +38,7 @@
 </script>
 
 {#await getBooks($filterStore.category, $filterStore.language, $filterStore.cover)}
-    <p>Loading...</p>
+    <Loading />
 {:then books}
     <div class="book-list">
         {#each books as book (book.isbn)}
