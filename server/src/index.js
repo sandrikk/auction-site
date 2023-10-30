@@ -11,6 +11,7 @@ const corsOptions = {
   origin: 'http://localhost:5173',
 };
 
+
 //Use the custom CORS configuration
 app.use(cors(corsOptions));
 

@@ -11,16 +11,16 @@ client.test(
 );
 %}
 
-###Testing to get a book with isbn 1435122941
+###Testing to get a book with isbn 9780451203592
 
-GET http://localhost:3000/books/1435122941
+GET http://localhost:3000/books/9780451203592
 
 > {%
 client.test(
     "Testing to get book with isbn 1435122941",
     function() {
         client.assert(response.status === 200, "There is no book with provided ISBN.");
-        client.assert(response.body.isbn === "1435122941", "Expected isbn - 1435122941")
+        client.assert(response.body.isbn === "9780451203592", "Expected isbn - 9780451203592")
     }
 );
 %}

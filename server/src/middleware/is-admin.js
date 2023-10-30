@@ -1,3 +1,4 @@
+/*
 const isAdmin = (req, res, next) => {
     if (!req.user) {
         return res.status(401).json({ message: 'Unauthorized' });
@@ -10,6 +11,22 @@ const isAdmin = (req, res, next) => {
     } else {
         return res.status(403).json({ message: 'Forbidden - Admin access required' });
     }
+};
+
+export default isAdmin;
+
+ */
+
+import isLoggedIn from "../middleware/is-logged-in.js";
+
+export const isAdmin = (req, res, next) => {
+    isLoggedIn(req, res, () => {
+        if(req.user && req.user.isAdmin){
+            next();
+        } else {
+            res.status(403).send("Unauthorized: You are not an admin");
+        }
+    });
 };
 
 export default isAdmin;

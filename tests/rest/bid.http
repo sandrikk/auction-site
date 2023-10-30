@@ -1,6 +1,6 @@
 ### Testing to get the list of all bids for specific book with isbn 1435122941
 
-GET http://localhost:3000/books/1435122941/bids
+GET http://localhost:3000/books/9780451203592/bids
 
 > {%
 client.test(
@@ -13,7 +13,7 @@ client.test(
 
 ###Testing to get a bid with id 1 for specific book with isbn 1435122941
 
-GET http://localhost:3000/books/1435122941/bids/1
+GET http://localhost:3000/books/9780451203592/bids/1
 
 > {%
 client.test(

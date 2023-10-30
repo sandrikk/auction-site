@@ -7,6 +7,27 @@
     let password = '';
     let errorMessage = '';
 
+    async function fetchData() {
+        const token = $tokenStore; // Retrieve the token from the store
+
+        try {
+            const response = await fetch("http://localhost:3000/tokens", {
+                method: 'GET', // or any other HTTP method
+                headers: {
+                    'Authorization': token, // Set the Authorization header
+                },
+            });
+
+            if (response.ok) {
+                // Handle successful response
+            } else {
+                // Handle error response
+            }
+        } catch (error) {
+            // Handle network or request error
+        }
+    }
+
     const handleSubmit = async () => {
         try {
             const response = await fetch("http://localhost:3000/tokens", {
@@ -22,8 +43,9 @@
             if (response.status === 201) {
                 console.log('Login successful');
                 const data = await response.json();
-                const token = `Bearer ${data.token}`; // Add "Bearer" schema to the token
-                tokenStore.set(token);
+                const token = `Bearer ${data.token}`;
+                $tokenStore = token;
+                //await fetchData() // add here the authorization header
                 router("/")
 
             } else {
