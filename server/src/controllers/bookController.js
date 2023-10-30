@@ -120,7 +120,7 @@ export async function placeBid(req, res) {
         const bidAmount = parseFloat(amount);
 
         if (isNaN(bidAmount) || bidAmount <= 0) {
-            return res.status(400).json({ error: 'Invalid bid amount' });
+            return res.status(400).json({ error: 'Invalid bid amount' + bidAmount});
         }
 
         if (foundBook.bids) {

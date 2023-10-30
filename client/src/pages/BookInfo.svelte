@@ -8,8 +8,10 @@
     let book = null;
     let highestBid = null;
     let timeRemaining = "";
-    let bid = null;
-
+    let amount = null;
+    let errorMessage = "";
+    let timeToStart = ""; // Variable to store time until the auction starts
+    let timeToEnd = "";
 
     export let params;
 
@@ -27,13 +29,38 @@
     }
 
     async function placeBid() {
-        const response = await fetch('http://localhost:3000/books/' + params.isbn + '/bids');
+        const response = await fetch('http://localhost:3000/books/' + params.isbn + '/bids', {
+            body: JSON.stringify({ bid: amount }),
+        });
         if (response.ok) {
             console.log('Placing bid successful');
         } else {
             throw { error: 'Something went wrong with bid!' };
         }
     }
+
+    const handleSubmit = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/books/' + params.isbn + '/bids', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ amount: amount }),
+
+            });
+
+            if (response.status === 201) {
+                console.log('Successful');
+                router("/")
+
+            } else {
+                errorMessage = (await response.json()).error;
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
 
     function findHighestBid() {
@@ -47,19 +74,36 @@
     function updateTimeRemaining() {
         const now = new Date();
         const startTime = new Date(book.startTime);
-        const timeDiff = startTime - now;
+        const endTime = new Date(book.endTime);
 
-        if (timeDiff > 0) {
-            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((timeDiff / 1000 / 60) % 60);
-            const seconds = Math.floor((timeDiff / 1000) % 60);
+        const startDiff = startTime - now;
+        const endDiff = endTime - now;
 
-            timeRemaining = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        if (startDiff > 0) {
+            // Auction hasn't started yet
+            const startDays = Math.floor(startDiff / (1000 * 60 * 60 * 24));
+            const startHours = Math.floor((startDiff / (1000 * 60 * 60)) % 24);
+            const startMinutes = Math.floor((startDiff / 1000 / 60) % 60);
+            const startSeconds = Math.floor((startDiff / 1000) % 60);
+
+            timeToStart = `${startDays}d ${startHours}h ${startMinutes}m ${startSeconds}s`;
+            timeToEnd = "Auction hasn't started";
+        } else if (endDiff > 0) {
+            // Auction is ongoing
+            const endDays = Math.floor(endDiff / (1000 * 60 * 60 * 24));
+            const endHours = Math.floor((endDiff / (1000 * 60 * 60)) % 24);
+            const endMinutes = Math.floor((endDiff / 1000 / 60) % 60);
+            const endSeconds = Math.floor((endDiff / 1000) % 60);
+
+            timeToStart = "Auction has started";
+            timeToEnd = `${endDays}d ${endHours}h ${endMinutes}m ${endSeconds}s`;
         } else {
-            timeRemaining = "Auction has started";
+            // Auction has ended
+            timeToStart = "Auction has ended";
+            timeToEnd = "Auction has ended";
         }
     }
+
 
     // Update time remaining every second
     const intervalId = setInterval(updateTimeRemaining, 1000);
@@ -89,15 +133,17 @@
             <p><strong>Release Date:</strong> {book.releaseDate}</p>
         </div>
         <div class="book-biding">
-            <p>Starts in: {timeRemaining}</p>
+            <p>Starts in: {timeToStart}</p>
+            <p>Ends in: {timeToEnd}</p>
             <p>Current bid: <span>{highestBid ? `€${highestBid}` : 'No bids yet'}</span></p>
-            <form on:submit|preventDefault={placeBid}>
-                <input name="bid" inputmode="numeric" pattern="[0-9]*" id="textField100" type="text" bind:value={bid}>
+            <form on:submit|preventDefault={handleSubmit}>
+                <input name="bid" inputmode="numeric" pattern="[0-9]*" id="textField100" type="text" bind:value={amount}>
+                <p>{errorMessage}</p>
                 <Button text="Place a bid" type="submit" />
             </form>
 
             {#each book.bids as bid, i (bid)}
-                <p>{bid.username} did place bid with amount {bid.amount}€ at {bid.time}</p>
+                <p>{bid.username} did place bid with amount {bid.amount}€ at {bid.date}</p>
             {/each}
         </div>
     </div>
