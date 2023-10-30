@@ -133,6 +133,7 @@ export async function placeBid(req, res) {
         // Create the bid object
         const newBid = {
             id: foundBook.bids ? foundBook.bids.length + 1 : 1,
+            username: username,
             amount: bidAmount,
             date: new Date().toISOString(),
         };

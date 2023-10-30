@@ -7,8 +7,8 @@
     import router from "page";
     let book = null;
     let highestBid = null;
-    let timeRemaining = "";
     let amount = null;
+    let username = null;
     let errorMessage = "";
     let timeToStart = ""; // Variable to store time until the auction starts
     let timeToEnd = "";
@@ -28,17 +28,6 @@
 
     }
 
-    async function placeBid() {
-        const response = await fetch('http://localhost:3000/books/' + params.isbn + '/bids', {
-            body: JSON.stringify({ bid: amount }),
-        });
-        if (response.ok) {
-            console.log('Placing bid successful');
-        } else {
-            throw { error: 'Something went wrong with bid!' };
-        }
-    }
-
     const handleSubmit = async () => {
         try {
             const response = await fetch('http://localhost:3000/books/' + params.isbn + '/bids', {
@@ -46,7 +35,7 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ amount: amount }),
+                body: JSON.stringify({amount}),
 
             });
 
