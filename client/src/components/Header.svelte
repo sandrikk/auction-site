@@ -26,7 +26,9 @@
         {#if $tokenStore === ''}
             <li><a class="login" class:active={active === "/login"} href="/login">Login</a></li>
         {:else}
-            <li><a class="logout" on:click={handleLogout}>Logout</a></li>
+            <li>
+                <a class="logout" on:click={handleLogout}>Logout</a>
+            </li>
         {/if}
     </ul>
 </nav>
@@ -39,6 +41,10 @@
     .menu {
         display: flex;
         gap: 1rem;
+    }
+
+    .menu li:last-child {
+        margin-left: 1rem;
     }
 
     .menu .login, .logout {

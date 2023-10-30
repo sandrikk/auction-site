@@ -9,11 +9,34 @@
     "publisher": "J.D. Lippincott",
     "numberOfPages": 196,
     "releaseDate": "1960",
-    "startTime": "",
-    "endTime": "",
+    "startTime": "2023-10-05T10:30:00",
+    "endTime": "2023-11-06T10:30:00",
     "images": [
       "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
       "https://i0.wp.com/www.raptisrarebooks.com/wp-content/uploads/2017/08/mockingbird-e1504020435651.jpg?ssl=1"
+    ],
+    "bids": [
+      {
+        "id": 1,
+        "amount": "10",
+        "username": "someuser",
+        "time": "2023-11-06T10:30:00"
+      },
+      {
+        "id": 2,
+        "amount": 12,
+        "date": "2023-10-26T15:30:54.386Z"
+      },
+      {
+        "id": 3,
+        "amount": 15,
+        "date": "2023-10-26T15:31:25.352Z"
+      },
+      {
+        "id": 4,
+        "amount": 17,
+        "date": "2023-10-30T07:56:44.546Z"
+      }
     ]
   },
   {
@@ -51,7 +74,6 @@
       "https://sothebys-md.brightspotcdn.com/dims4/default/8516ec4/2147483647/strip/true/crop/606x607+0+0/resize/800x801!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2F4f%2F32%2Ff3d977c74423b955afaab25475c6%2Flolita3.jpg"
     ]
   },
-
   {
     "isbn": 9780744800160,
     "title": "The Catcher in the Rye",
@@ -121,7 +143,6 @@
       "https://sothebys-md.brightspotcdn.com/dims4/default/b35ce74/2147483647/strip/true/crop/1500x2000+0+0/resize/800x1067!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2Fee%2F96%2F5b320046401d950f85dc5786b7b3%2F49605-9.jpg"
     ]
   },
-
   {
     "isbn": 9781610420953,
     "title": "The House of the Vampire",
@@ -139,7 +160,6 @@
       "https://sothebys-md.brightspotcdn.com/dims4/default/e44fbf5/2147483647/strip/true/crop/804x1200+0+0/resize/800x1194!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2F83%2F05%2Ff3c1844d41089b58d724418f9fd6%2F1494.3.jpg"
     ]
   },
-
   {
     "isbn": 9781610745253,
     "title": "Alice's Abenteuer im Wunderland",
@@ -223,6 +243,4 @@
       "https://sothebys-md.brightspotcdn.com/dims4/default/7b744ba/2147483647/strip/true/crop/1706x1706+0+0/resize/800x800!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2Fcf%2Fe8%2Ffe9f83c048d79ec0fa50cefafb4d%2Fck3sd2.jpg"
     ]
   }
-
-
 ]
