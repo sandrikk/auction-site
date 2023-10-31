@@ -24,7 +24,6 @@
                 const data = await response.json();
                 const token = `Bearer ${data.token}`;
                 $tokenStore = token;
-                //await fetchData() // add here the authorization header
                 router("/")
 
             } else {
@@ -47,9 +46,6 @@
             <input type="text" placeholder="email" name="email" bind:value={email} />
             <input type="password" placeholder="password" name="password" bind:value={password} />
 
-            <!--
-            <button type="submit">Login</button>
-            -->
             <Button type="submit" text="Login" />
 
             {#if errorMessage}

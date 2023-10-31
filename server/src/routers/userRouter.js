@@ -6,6 +6,6 @@ import isLoggedIn from "../middleware/is-logged-in.js";
 const router = express.Router();
 
 router.post('', userController.addUser);
-router.get('',isLoggedIn, userController.getAllUsers);
+router.get('', isLoggedIn, isAdmin, userController.getAllUsers);
 
 export default router;

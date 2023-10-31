@@ -8,6 +8,7 @@ const usersFilePath = 'src/json/users.json';
 export function addToken(req, res) {
     const { email, password } = req.body;
 
+
     //Validate email and password
     if (!validateEmail(email)) {
         return res.status(400).json({ error: 'Invalid email address' });

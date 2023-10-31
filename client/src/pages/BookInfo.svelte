@@ -30,13 +30,16 @@
 
     const handleSubmit = async () => {
         try {
+            const headers = {
+                'Content-Type': 'application/json',
+            };
+            if ($tokenStore) {
+                headers.Authorization = $tokenStore;
+            }
             const response = await fetch('http://localhost:3000/books/' + params.isbn + '/bids', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: headers,
                 body: JSON.stringify({amount}),
-
             });
 
             if (response.status === 201) {

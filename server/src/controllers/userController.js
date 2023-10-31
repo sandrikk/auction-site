@@ -31,6 +31,9 @@ export function getAllUsers (req, res) {
 export async function addUser(req, res) {
     const { email, password } = req.body;
 
+    // Extract username from email
+    const username = email.split('@')[0];
+
     //Validate email and password
     if (!validateEmail(email)) {
         return res.status(400).json({ error: 'Invalid email address' });
@@ -59,6 +62,7 @@ export async function addUser(req, res) {
         //Store the user
         const user = {
             id: usersWithIds.length + 1,
+            username,
             email,
             password: hashedPassword,
             isAdmin: false

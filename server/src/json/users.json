@@ -1,20 +1,16 @@
 [
   {
     "id": 1,
+    "username": "usertest",
     "email": "usertest@example.com",
     "password": "$2b$12$j56x8J7rY92mLnJh5MVlb.REEfHIgqMaJ9o2hNjHS16RJEpfNVXn6",
     "isAdmin": false
   },
   {
     "id": 2,
+    "username": "admintest",
     "email": "admintest@example.com",
     "password": "$2b$12$R2f8D/LJZ0jGGNTIrDi7QepnpfYifAl4S56vjr2NkZdcyeu6hT29a",
     "isAdmin": true
-  },
-  {
-    "id": 3,
-    "email": "admintgbggbggrgest@example.com",
-    "password": "$2b$12$A1WZPtCSkTP9KviNorD5KO6TT0hATYqmzZmv0tAoWAHNBfLAWyeJW",
-    "isAdmin": false
   }
 ]

@@ -48,7 +48,7 @@ export function getAllBidsForBook(req, res) {
 
 export function getBookByIsbn(req, res) {
     const isbn = Number(req.params.isbn);
-    console.log('ISBN from URL:', isbn);
+    //console.log('ISBN from URL:', isbn);
 
     // Read the contents of the books.json file
     fs.readFile(booksFilePath, 'utf8', (err, data) => {
@@ -62,7 +62,7 @@ export function getBookByIsbn(req, res) {
             // Parse the JSON data into an array of books
             const books = JSON.parse(data);
 
-            console.log('All books:', books);
+            //console.log('All books:', books);
 
             // Find the book with the matching ISBN
             const foundBook = books.find((book) => book.isbn === isbn);
@@ -133,10 +133,12 @@ export async function placeBid(req, res) {
         // Create the bid object
         const newBid = {
             id: foundBook.bids ? foundBook.bids.length + 1 : 1,
-            username: username,
+            username: req.user.username,
             amount: bidAmount,
             date: new Date().toISOString(),
         };
+
+        console.log(req.user);
 
         // Add the bid to the book's bids array
         if (!foundBook.bids) {
