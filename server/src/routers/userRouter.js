@@ -7,5 +7,6 @@ const router = express.Router();
 
 router.post('', userController.addUser);
 router.get('', isLoggedIn, isAdmin, userController.getAllUsers);
+router.get('/me/won', isLoggedIn, userController.getWonAuctions);
 
 export default router;

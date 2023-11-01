@@ -21,14 +21,12 @@
 <nav class="navigation">
     <ul class="menu">
         <li><a class:active={active === "/books"} href="/books">Books</a></li>
-        <li><a class:active={active === "/bids"} href="/bids">Bids</a></li>
         <li><a class:active={active === "/users"} href="/users">Users</a></li>
         {#if $tokenStore === null}
             <li><a class="login" class:active={active === "/login"} href="/login">Login</a></li>
         {:else}
-            <li>
-                <a class="logout" on:click={handleLogout}>Logout</a>
-            </li>
+            <li><a class:active={active === "/users/me/won"} href="/users/me/won">Won Bids</a></li>
+            <li><a class="logout" on:click={handleLogout}>Logout</a></li>
         {/if}
     </ul>
 </nav>
@@ -40,7 +38,7 @@
 
     .menu {
         display: flex;
-        gap: 1rem;
+        gap: 2rem;
     }
 
     .menu li:last-child {

@@ -8,7 +8,6 @@
 
     let highestBid = null;
     let amount = null;
-    let username = null;
     let errorMessage = "";
     let timeToStart = ""; // Variable to store time until the auction starts
     let timeToEnd = "";

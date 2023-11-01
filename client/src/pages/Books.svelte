@@ -2,6 +2,9 @@
     import SearchBar from "../components/SearchBar.svelte";
     import FilterSection from "../components/FilterSection.svelte";
     import BookList from "../components/BookList.svelte";
+    export let active;
+    export let params;
+    let searchTerm = "";
 
 </script>
 
@@ -10,10 +13,11 @@
 </div>
 
 <div class="content">
-    <SearchBar />
-    <BookList />
-</div>
 
+    <SearchBar bind:searchTerm />
+    <BookList {searchTerm} />
+
+</div>
 
 <style>
 

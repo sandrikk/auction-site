@@ -2,6 +2,7 @@ import fs from "fs";
 import validator from "validator";
 import bcrypt from "bcrypt";
 const usersFilePath = 'src/json/users.json';
+const booksFilePath = 'src/json/books.json';
 const saltRounds = 12;
 
 
@@ -76,6 +77,40 @@ export async function addUser(req, res) {
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
     }
+}
+
+export async function getWonAuctions(req, res) {
+// Read the contents of the books.json file
+    fs.readFile(booksFilePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading books.json:', err);
+            res.status(500).send('Error reading books.json');
+            return;
+        }
+
+        // Parse the JSON data
+        const books = JSON.parse(data);
+
+        const loggedInUser = req.user.username;
+
+
+    // Filter books
+    const wonBooks = books.filter(book => {
+        const endTime = new Date(book.endTime);
+        const now = new Date();
+
+        if (now > endTime && book.bids && book.bids.length > 0) {
+            // Check if the highest bid belongs to the logged-in user
+            const highestBid = book.bids[book.bids.length - 1];  // Assuming bids are in ascending order
+            return highestBid.username === loggedInUser;
+        }
+
+        return false;
+    });
+
+    res.status(200).json(wonBooks);
+    });
+
 }
 
 

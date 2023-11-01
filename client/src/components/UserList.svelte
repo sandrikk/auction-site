@@ -13,12 +13,14 @@
             headers: headers
         });
 
+        const respJson = await response.json();
+
         if (response.ok) {
             // Parse the JSON data and assign it to the 'books' variable
-            return response.json();
+            return respJson;
         }
 
-        throw {error: 'Something went wrong!'}
+        throw respJson;
     }
 
 </script>
@@ -34,5 +36,5 @@
         {/each}
     </div>
 {:catch error}
-    <p>Error!! {error}</p>
+    <p>Error!! {error.message}</p>
 {/await}

@@ -10,7 +10,7 @@
     "numberOfPages": 196,
     "releaseDate": "1960",
     "startTime": "2023-10-05T10:30:00",
-    "endTime": "2023-11-06T10:30:00",
+    "endTime": "2023-10-06T10:30:00",
     "images": [
       "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
       "https://i0.wp.com/www.raptisrarebooks.com/wp-content/uploads/2017/08/mockingbird-e1504020435651.jpg?ssl=1"
@@ -21,6 +21,12 @@
         "username": "user33",
         "amount": 30,
         "date": "01.11.2023 07:51"
+      },
+      {
+        "id": 2,
+        "username": "admintest",
+        "amount": 100,
+        "date": "01.11.2023 16:30"
       }
     ]
   },
@@ -39,6 +45,14 @@
     "images": [
       "https://sothebys-md.brightspotcdn.com/dims4/default/eefc28a/2147483647/strip/true/crop/615x862+0+0/resize/800x1121!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2F52%2F1f%2Fb679e144413fadb22b48a9ec6a5c%2Fdaido-moriyama-tights-in-shimotakaido-art-book.png",
       "https://sothebys-md.brightspotcdn.com/dims4/default/94a61ce/2147483647/strip/true/crop/601x847+0+0/resize/800x1127!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2F15%2F25%2F1af6781842e1862f1eb50f0c7ac5%2Fdm1.png"
+    ],
+    "bids": [
+      {
+        "id": 1,
+        "username": "user33",
+        "amount": 30,
+        "date": "01.11.2023 07:51"
+      }
     ]
   },
   {

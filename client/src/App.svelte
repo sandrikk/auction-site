@@ -9,6 +9,7 @@
   import BookInfo from "./pages/BookInfo.svelte";
   import Books from "./pages/Books.svelte";
   import Users from "./pages/Users.svelte";
+  import WonBids from "./pages/WonBids.svelte";
 
   let page;
   let params;
@@ -37,6 +38,10 @@
   });
   router('/users', (ctx) => {
     page = Users;
+    currentRoute = ctx.pathname;
+  });
+  router('/users/me/won', (ctx) => {
+    page = WonBids;
     currentRoute = ctx.pathname;
   });
 
