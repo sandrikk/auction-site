@@ -9,6 +9,7 @@ export function addToken(req, res) {
     const { email, password } = req.body;
 
 
+
     //Validate email and password
     if (!validateEmail(email)) {
         return res.status(400).json({ error: 'Invalid email address' });
@@ -21,6 +22,8 @@ export function addToken(req, res) {
     //Check if the user is registered
     const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
     const user = users.find((u) => u.email === email);
+    const isAdmin = user.isAdmin;
+    const username = user.username;
 
     if (!user) {
         return res.status(401).json({ error: 'User not found' });
@@ -35,7 +38,7 @@ export function addToken(req, res) {
 
     //Create a JWT token
     const secret = 'fvsjbherbheirbrhvfvkcvnkgndhghdrjtfkyugfjdhtgrrsehtrdyufkylfkjrdthserashtrdjytkfuytjdrhsetrdfkuyjtdhrtscvkdvkcv';
-    jwt.sign({ email }, secret, { algorithm: 'HS256' }, (err, token) => {
+    jwt.sign({ email, username, isAdmin }, secret, { algorithm: 'HS256' }, (err, token) => {
         if (err) {
             console.error('Error creating token:', err);
             return res.status(500).json({ error: 'Failed to create token' });

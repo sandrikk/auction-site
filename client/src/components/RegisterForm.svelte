@@ -9,7 +9,7 @@
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch("http://localhost:3000/tokens", {
+            const response = await fetch("http://localhost:3000/users", { // Change endpoint to /users or wherever you handle registration
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -20,15 +20,13 @@
             console.log('Response Status:', response.status);
 
             if (response.status === 201) {
-                console.log('Login successful');
-                const data = await response.json();
-                const token = `Bearer ${data.token}`; // Add "Bearer" schema to the token
-                tokenStore.set(token);
-                router("/")
+                console.log('Registration successful');
+                // After successful registration, navigate to login page or home page
+                router("/login")
 
             } else {
                 const data = await response.json();
-                console.error('Login failed:', data.error || 'Unknown error');
+                errorMessage = data.error || 'Unknown error';
             }
         } catch (error) {
             console.error('Error:', error);

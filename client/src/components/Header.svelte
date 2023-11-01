@@ -6,7 +6,7 @@
     import {tokenStore} from "../stores/tokenStore.js";
 
     const handleLogout = async () => {
-        tokenStore.set('');
+        tokenStore.set(null);
         router("/login");
     };
 

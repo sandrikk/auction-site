@@ -1,6 +1,8 @@
 ### Testing to get the list of all users
 
 GET http://localhost:3000/users
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
 
 > {%
 client.test(

@@ -135,7 +135,7 @@ export async function placeBid(req, res) {
             id: foundBook.bids ? foundBook.bids.length + 1 : 1,
             username: req.user.username,
             amount: bidAmount,
-            date: new Date().toISOString(),
+            date: formatDate(new Date()),  // Format the date here
         };
 
         console.log(req.user);
@@ -193,8 +193,17 @@ export function getBooksByCategory(req, res) {
     });
 }
 
-function writeBooksFile(books) {
-    fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 2), 'utf8');
+function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // +1 because months are 0-based
+    const year = date.getUTCFullYear();
+
+    const hours = String(date.getUTCHours()).padStart(2, '0');
+    const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+
+    return `${day}.${month}.${year} ${hours}:${minutes}`;
 }
 
 

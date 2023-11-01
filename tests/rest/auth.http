@@ -1,5 +1,5 @@
 ###
-### Retrieve a token that can be used for calls requiring authentication
+### Retrieve a user token that can be used for calls requiring authentication
 ###
 POST {{protocol}}{{host}}:{{port}}/tokens
 Content-Type: application/json
@@ -11,14 +11,22 @@ Accept: application/json
 }
 
 > {%
-client.global.set("token", response.body.token);
+client.global.set("user_token", response.body.token);
 %}
 
-
 ###
-### Invalidate the token
+### Retrieve a admin token that can be used for calls requiring authentication
 ###
-DELETE {{protocol}}{{host}}:{{port}}/auth
+POST {{protocol}}{{host}}:{{port}}/tokens
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer {{token}}
+
+{
+  "email": "admintest@example.com",
+  "password": "admintest"
+}
+
+> {%
+client.global.set("admin_token", response.body.token);
+%}
+

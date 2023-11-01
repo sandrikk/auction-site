@@ -5,7 +5,7 @@
     import Button from "../components/Button.svelte";
     import {tokenStore} from "../stores/tokenStore.js";
     import router from "page";
-    let book = null;
+
     let highestBid = null;
     let amount = null;
     let username = null;
@@ -20,8 +20,10 @@
         const response = await fetch('http://localhost:3000/books/' + params.isbn);
         if (response.ok) {
             // Parse the JSON data and assign it to the 'book' variable
-            book = await response.json();
-            findHighestBid();
+            const book = await response.json();
+            findHighestBid(book);
+            intervalId = setInterval(() => updateTimeRemaining(book), 1000);
+            return book;
         } else {
             throw { error: 'Something went wrong!' };
         }
@@ -55,7 +57,7 @@
     };
 
 
-    function findHighestBid() {
+    function findHighestBid(book) {
         if (book && book.bids) {
             const bids = book.bids.map(bid => Number(bid.amount));
             highestBid = Math.max(...bids);
@@ -63,7 +65,7 @@
     }
 
     // Function to calculate and update time remaining
-    function updateTimeRemaining() {
+    function updateTimeRemaining(book) {
         const now = new Date();
         const startTime = new Date(book.startTime);
         const endTime = new Date(book.endTime);
@@ -98,7 +100,7 @@
 
 
     // Update time remaining every second
-    const intervalId = setInterval(updateTimeRemaining, 1000);
+    let intervalId;
 
     // Clean up the interval when the component is destroyed
     onDestroy(() => {
@@ -109,7 +111,7 @@
 
 {#await getBookByIsbn()}
     <Loading />
-{:then}
+{:then book}
     <div class="book-layout">
         <Slider {book}/>
 
