@@ -157,8 +157,57 @@ export async function addBook(req, res) {
 }
 
 export async function modifyBook(req, res) {
+    const bookData = req.body;
+    const isbn = Number(req.params.isbn);
 
+    try {
+        const existingBook = await findBookByIsbn(isbn);
+
+        // Check if the book does not exist
+        if (!existingBook) {
+            return res.status(404).send('Book with the specified ISBN not found.');
+        }
+
+        // Number of pages validation
+        if (bookData.numberOfPages <= 0 || !Number.isInteger(bookData.numberOfPages)) {
+            return res.status(400).send('Invalid number of pages.');
+        }
+
+        // Date validations
+        const releaseDate = new Date(bookData.releaseDate);
+        const startTime = new Date(bookData.startTime);
+        const endTime = new Date(bookData.endTime);
+        if (isNaN(releaseDate) || isNaN(startTime) || isNaN(endTime)) {
+            return res.status(400).send('Invalid date format provided.');
+        }
+        if (startTime >= endTime) {
+            return res.status(400).send('Start time should be before end time.');
+        }
+
+        // Validate specific string fields to ensure they are non-empty strings
+        const stringFields = ['title', 'author', 'category', 'language', 'cover', 'publisher'];
+        for (let field of stringFields) {
+            if (!bookData[field] || typeof bookData[field] !== 'string' || bookData[field].trim() === '') {
+                return res.status(400).send(`Field "${field}" must be a non-empty string.`);
+            }
+        }
+
+        const books = await readBooksFile();
+        const bookIndex = books.findIndex(book => book.isbn === isbn);
+
+        if (bookIndex === -1) {
+            return res.status(404).send('Book with the specified ISBN not found in the list.');
+        }
+
+        books[bookIndex] = bookData;  // Update the book data
+        await writeToBooksFile(books);
+
+        res.status(200).send('Book updated successfully.');
+    } catch (error) {
+        res.status(500).send('Error processing the request');
+    }
 }
+
 
 export async function deleteBook(req, res) {
     const isbn = Number(req.params.isbn);

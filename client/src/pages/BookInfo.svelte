@@ -139,9 +139,12 @@
                 <Button text="Place a bid" type="submit" />
             </form>
 
-            {#each book.bids as bid, i (bid)}
-                <p>{bid.username} did place bid with amount {bid.amount}€ at {bid.date}</p>
-            {/each}
+            {#if book.bids && book.bids.length > 0}
+                {#each book.bids as bid, i (bid)}
+                    <p>{bid.username} did place a bid with an amount of {bid.amount}€ at {bid.date}</p>
+                {/each}
+            {/if}
+
         </div>
     </div>
 

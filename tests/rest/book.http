@@ -17,10 +17,10 @@ GET http://localhost:3000/books/9780451203592
 
 > {%
 client.test(
-    "Testing to get book with isbn 1435122941",
+    "Testing to get book with isbn 9780451203592",
     function() {
         client.assert(response.status === 200, "There is no book with provided ISBN.");
-        client.assert(response.body.isbn === "9780451203592", "Expected isbn - 9780451203592")
+        client.assert(response.body.isbn === 9780451203592, "Expected isbn - 9780451203592")
     }
 );
 %}
@@ -38,41 +38,80 @@ client.test(
 );
 %}
 
-### Testing to post a new book
+### Testing to post a new book as admin
 
 POST http://localhost:3000/books
 Content-Type: application/json
+Authorization: Bearer {{admin_token}}
 
 {
-  "isbn": "1435122941",
-  "title": "Alices Adventures in Wonderland",
-  "author": "Lewis Carroll",
-  "numberOfPages": 1165,
+  "isbn": 9770451803592842885,
+  "title": "To Kill a Mockingbird",
+  "author": "Harper Lee",
+  "category": "Classic Literature",
   "language": "English",
-  "publisher": "Barnes & Noble",
-  "releaseDate": "2011-01-01",
-  "startTime": "2023-09-01 15:43:00",
-  "endTime": "2023-10-01 15:43:00"
+  "cover": "Hardcover",
+  "publisher": "J.D. Lippincott",
+  "numberOfPages": 196,
+  "releaseDate": "1960",
+  "startTime": "2023-10-05T10:30:00",
+  "endTime": "2023-11-06T10:30:00",
+  "images": [
+    "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
+    "https://i0.wp.com/www.raptisrarebooks.com/wp-content/uploads/2017/08/mockingbird-e1504020435651.jpg?ssl=1"
+  ]
 }
 
 > {%
 client.test(
-    "Testing to post a new book",
+    "Testing to post a new book as admin",
     function() {
         client.assert(response.status === 201, "Response status is not 201");
-        client.assert(response.body.title === "Alices Adventures in Wonderland", "Book title in the response does not match the expected title");
-        //the book already exists
+        client.assert(response.body.title === "To Kill a Mockingbird", "Book title in the response does not match the expected title");
         client.assert(response.body.releaseDate < Date.now(), "Book was released in the future? Cool");
-        client.assert(response.body.endTime > Date.now(), "Auction for this book cannot be finished already.")
-
+        client.assert(response.body.endTime > Date.now(), "Auction for this book cannot be closed.")
     }
 );
 %}
 
-### Testing to post a new book (BAD WEATHER)
+### Testing to post a new book as user (BAD WEATHER)
 
 POST http://localhost:3000/books
 Content-Type: application/json
+Authorization: Bearer {{user_token}}
+
+{
+  "isbn": 9770451803592842885,
+  "title": "To Kill a Mockingbird",
+  "author": "Harper Lee",
+  "category": "Classic Literature",
+  "language": "English",
+  "cover": "Hardcover",
+  "publisher": "J.D. Lippincott",
+  "numberOfPages": 196,
+  "releaseDate": "1960",
+  "startTime": "2023-10-05T10:30:00",
+  "endTime": "2023-11-06T10:30:00",
+  "images": [
+    "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
+    "https://i0.wp.com/www.raptisrarebooks.com/wp-content/uploads/2017/08/mockingbird-e1504020435651.jpg?ssl=1"
+  ]
+}
+
+> {%
+client.test(
+    "Testing to post a new book as user",
+    function() {
+        client.assert(response.status === 403, "Response status is not 403");
+    }
+);
+%}
+
+### Testing to post a new book with invalid data (BAD WEATHER)
+
+POST http://localhost:3000/books
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
 
 {
   "title": "Alices Adventures in Wonderland",
@@ -89,46 +128,54 @@ Content-Type: application/json
 client.test(
     "Testing to post a new book (BAD WEATHER)",
     function() {
-        client.assert(response.status === 500, "500. The book object cannot be parsed correctly");
+        client.assert(response.status === 400, "Response status is not 400");
 
     }
 );
 %}
 
-### Testing to put a new book
+### Testing to put a new book as admin
 
-PUT http://localhost:3000/books
+PUT http://localhost:3000/books/978045120359284200
 Content-Type: application/json
+Authorization: Bearer {{admin_token}}
 
 {
-  "isbn": "1435122941",
-  "title": "Alices Adventures in Wonderland and Beyond",
-  "author": "Lewis Carroll",
-  "numberOfPages": 1165,
+  "isbn": 978045120359284200,
+  "title": "To Kill a Mockingbird2",
+  "author": "Harper Lee",
+  "category": "Classic Literature",
   "language": "English",
-  "publisher": "Barnes & Noble",
-  "releaseDate": "2011-01-01",
-  "startTime": "2023-09-01 15:43:00",
-  "endTime": "2023-10-01 15:43:00"
+  "cover": "Hardcover",
+  "publisher": "J.D. Lippincott",
+  "numberOfPages": 196,
+  "releaseDate": "1960",
+  "startTime": "2023-10-05T10:30:00",
+  "endTime": "2023-11-06T10:30:00",
+  "images": [
+    "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
+    "https://i0.wp.com/www.raptisrarebooks.com/wp-content/uploads/2017/08/mockingbird-e1504020435651.jpg?ssl=1"
+  ]
 }
 
 > {%
 client.test(
-    "Testing to put a new book",
+    "Testing to put a new book as admin",
     function() {
         client.assert(response.status === 200, "Response status is not 200");
-        client.assert(response.body.title === "Alices Adventures in Wonderland and Beyond", "Book title in the response does not match the updated title");
+        client.assert(response.body.title === "To Kill a Mockingbird2", "Book title in the response does not match the updated title");
         client.assert(response.body.releaseDate < Date.now(), "Book was released in the future? Cool");
-        client.assert(response.body.endTime > Date.now(), "Auction for this book cannot be finished already.")
+        client.assert(response.body.endTime > Date.now(), "Auction for this book cannot be closed.")
 
     }
 );
 %}
 
-### Testing to put a new book (BAD WEATHER)
+### Testing to put a new book with invalid data (BAD WEATHER)
 
-PUT http://localhost:3000/books
+PUT http://localhost:3000/books/9780451803592843000
 Content-Type: application/json
+Authorization: Bearer {{admin_token}}
 
 {
   "title": "Alices Adventures in Wonderland and Beyond",
@@ -143,23 +190,37 @@ Content-Type: application/json
 
 > {%
 client.test(
-    "Testing to put a new book (BAD WEATHER)",
+    "Testing to put a new book with invalid data (BAD WEATHER)",
     function() {
         client.assert(response.status === 400, "400. The book object cannot be updated correctly");
     }
 );
 %}
 
-###Testing to delete a book with isbn 1435122941
+###Testing to delete a book with isbn 9770451803592843000 as admin
 
-DELETE http://localhost:3000/books/1435122941
+DELETE http://localhost:3000/books/9770451803592843000
+Authorization: Bearer {{admin_token}}
 
 > {%
 client.test(
-    "Testing to delete a book with isbn 1435122941",
+    "Testing to delete a book with isbn 9770451803592843000",
     function() {
         client.assert(response.status === 200, "There is no book with provided ISBN.");
-        client.assert(response.body.isbn === "1435122941", "Expected isbn - 1435122941")
+    }
+);
+%}
+
+###Testing to delete a book with isbn 9770451803592843000 as user
+
+DELETE http://localhost:3000/books/9780451803592843000
+Authorization: Bearer {{user_token}}
+
+> {%
+client.test(
+    "Testing to delete a book with isbn 9770451803592843000",
+    function() {
+        client.assert(response.status === 403, "Response status is not 403");
     }
 );
 %}
@@ -167,6 +228,7 @@ client.test(
 ###Testing to delete a book with isbn 0 (BAD WEATHER)
 
 DELETE http://localhost:3000/books/0
+Authorization: Bearer {{admin_token}}
 
 > {%
 client.test(

@@ -15,7 +15,7 @@ client.test(
 
 ###Testing to get a user with username 'some_user'
 
-GET http://localhost:3000/users/some_user
+GET http://localhost:3000/users/1
 
 > {%
 client.test(
