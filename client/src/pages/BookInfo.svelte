@@ -4,10 +4,12 @@
     import {onDestroy} from "svelte";
     import Button from "../components/Button.svelte";
     import {tokenStore} from "../stores/tokenStore.js";
+    import hammer from '../assets/hammer.gif'
     import router from "page";
 
     let highestBid = null;
     let amount = null;
+    let showSuccessIcon = false;
     let errorMessage = "";
     let timeToStart = ""; // Variable to store time until the auction starts
     let timeToEnd = "";
@@ -45,7 +47,9 @@
 
             if (response.status === 201) {
                 console.log('Successful');
-                router("/")
+                showSuccessIcon = true;
+                setTimeout(() => showSuccessIcon = false, 3000); // Hide after 3 seconds
+                //router("/")
 
             } else {
                 errorMessage = (await response.json()).error;
@@ -140,6 +144,10 @@
             {/each}
         </div>
     </div>
+
+    {#if showSuccessIcon}
+        <img src={hammer} alt="animation" class="animation" />
+    {/if}
 {:catch error}
     <p>Error: {error}</p>
 {/await}
@@ -169,4 +177,16 @@
         color: var(--details);
         text-decoration: underline;
     }
+
+    .animation {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        width: 200px;
+        height: auto;
+        pointer-events: none;
+    }
+
 </style>

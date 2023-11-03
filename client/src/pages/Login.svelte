@@ -1,6 +1,7 @@
 <script>
     import LoginForm from "../components/LoginForm.svelte";
+    import Form from "../components/Form.svelte";
     export let currentRoute;
 </script>
 
-<LoginForm active={currentRoute}/>
+<Form mode="login" />
