@@ -45,6 +45,24 @@
         "username": "admintest",
         "amount": 123,
         "date": "03.11.2023 11:57"
+      },
+      {
+        "id": 6,
+        "username": "usertest",
+        "amount": 125,
+        "date": "03.11.2023 18:16"
+      },
+      {
+        "id": 7,
+        "username": "usertest",
+        "amount": 129,
+        "date": "03.11.2023 18:57"
+      },
+      {
+        "id": 8,
+        "username": "admintest",
+        "amount": 180,
+        "date": "03.11.2023 19:30"
       }
     ]
   },
@@ -289,57 +307,6 @@
         "amount": 100,
         "date": "01.11.2023 16:30"
       }
-    ]
-  },
-  {
-    "isbn": 9770451803593843000,
-    "title": "To Kill a Mockingbird2",
-    "author": "Harper Lee",
-    "category": "Classic Literature",
-    "language": "English",
-    "cover": "Hardcover",
-    "publisher": "J.D. Lippincott",
-    "numberOfPages": 196,
-    "releaseDate": "1960",
-    "startTime": "2023-10-05T10:30:00",
-    "endTime": "2023-11-06T10:30:00",
-    "images": [
-      "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
-      "https://i0.wp.com/www.raptisrarebooks.com/wp-content/uploads/2017/08/mockingbird-e1504020435651.jpg?ssl=1"
-    ]
-  },
-  {
-    "isbn": 9780451203592843000,
-    "title": "To Kill a Mockingbirddd",
-    "author": "Harper Lee",
-    "category": "Classic Literature",
-    "language": "English",
-    "cover": "Hardcover",
-    "publisher": "J.D. Lippincott",
-    "numberOfPages": 196,
-    "releaseDate": "1960",
-    "startTime": "2023-10-05T10:30:00",
-    "endTime": "2023-11-06T10:30:00",
-    "images": [
-      "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
-      "https://i0.wp.com/www.raptisrarebooks.com/wp-content/uploads/2017/08/mockingbird-e1504020435651.jpg?ssl=1"
-    ]
-  },
-  {
-    "isbn": 9770451803593843000,
-    "title": "To Kill a Mockingbird2",
-    "author": "Harper Lee",
-    "category": "Classic Literature",
-    "language": "English",
-    "cover": "Hardcover",
-    "publisher": "J.D. Lippincott",
-    "numberOfPages": 196,
-    "releaseDate": "1960",
-    "startTime": "2023-10-05T10:30:00",
-    "endTime": "2023-11-06T10:30:00",
-    "images": [
-      "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
-      "https://i0.wp.com/www.raptisrarebooks.com/wp-content/uploads/2017/08/mockingbird-e1504020435651.jpg?ssl=1"
     ]
   }
 ]

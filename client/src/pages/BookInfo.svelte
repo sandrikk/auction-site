@@ -2,17 +2,17 @@
     import Slider from "../components/Slider.svelte";
     import Loading from "../components/Loading.svelte";
     import {onDestroy} from "svelte";
-    import Button from "../components/Button.svelte";
     import {tokenStore} from "../stores/tokenStore.js";
     import hammer from '../assets/hammer.gif'
-    import router from "page";
+    import BookDescription from "../components/BookDescription.svelte";
+    import Bidding from "../components/Bidding.svelte";
 
-    let highestBid = null;
-    let amount = null;
-    let showSuccessIcon = false;
-    let errorMessage = "";
     let timeToStart = ""; // Variable to store time until the auction starts
     let timeToEnd = "";
+    let highestBid = null;
+    let showSuccessIcon = false;
+    let errorMessage = "";
+    let amount = "";
 
     export let params;
 
@@ -31,8 +31,9 @@
 
     }
 
-    const handleSubmit = async () => {
+    export const handleSubmit = async () => {
         try {
+            console.log(amount);
             const headers = {
                 'Content-Type': 'application/json',
             };
@@ -58,7 +59,6 @@
             console.error('Error:', error);
         }
     };
-
 
     function findHighestBid(book) {
         if (book && book.bids) {
@@ -118,34 +118,17 @@
     <div class="book-layout">
         <Slider {book}/>
 
-        <div class="book-description">
-            <a class="go-back-link" href="/">Go back</a>
-            <h1>{book.title}</h1>
-            <h2>{book.author}</h2>
-            <p><strong>Category:</strong> {book.category}</p>
-            <p><strong>Language:</strong> {book.language}</p>
-            <p><strong>Cover:</strong> {book.cover}</p>
-            <p><strong>Publisher:</strong> {book.publisher}</p>
-            <p><strong>Number of Pages:</strong> {book.numberOfPages}</p>
-            <p><strong>Release Date:</strong> {book.releaseDate}</p>
-        </div>
-        <div class="book-biding">
-            <p>Starts in: {timeToStart}</p>
-            <p>Ends in: {timeToEnd}</p>
-            <p>Current bid: <span>{highestBid ? `€${highestBid}` : 'No bids yet'}</span></p>
-            <form on:submit|preventDefault={handleSubmit}>
-                <input name="bid" inputmode="numeric" pattern="[0-9]*" id="textField100" type="text" bind:value={amount}>
-                <p>{errorMessage}</p>
-                <Button text="Place a bid" type="submit" />
-            </form>
+        <BookDescription {book}/>
 
-            {#if book.bids && book.bids.length > 0}
-                {#each book.bids as bid, i (bid)}
-                    <p>{bid.username} did place a bid with an amount of {bid.amount}€ at {bid.date}</p>
-                {/each}
-            {/if}
+        <Bidding bind:amount
+                {book}
+                {timeToStart}
+                {timeToEnd}
+                {highestBid}
+                {handleSubmit}
+                {errorMessage}
+        />
 
-        </div>
     </div>
 
     {#if showSuccessIcon}
@@ -164,21 +147,8 @@
         gap: 1rem;
     }
 
-    .book-description {
-        width: 50%;
-    }
-
-    .book-biding {
-        width: 25%;
-    }
-
     h1, h2 {
         margin: 0;
-    }
-
-    .go-back-link {
-        color: var(--details);
-        text-decoration: underline;
     }
 
     .animation {

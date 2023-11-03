@@ -32,6 +32,11 @@
     currentRoute = ctx.pathname;
     params = ctx.params;
   });
+  router('/bookInfo/:isbn', (ctx) => {
+    page = BookInfo;
+    currentRoute = ctx.pathname;
+    params = ctx.params;
+  });
   router('/books', (ctx) => {
     page = Books;
     currentRoute = ctx.pathname;
