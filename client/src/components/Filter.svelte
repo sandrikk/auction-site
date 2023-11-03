@@ -1,8 +1,6 @@
 
 <!-- Filter.svelte -->
 <script>
-    import router from "page";
-
     import {filterStore} from "../stores/filterStore.js";
 
     export let title;
