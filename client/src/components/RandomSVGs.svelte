@@ -5,9 +5,9 @@
     onMount(() => {
         positions = Array(3).fill(undefined).map(() => {
             let width = 500 + Math.random() * 200;  // Width between 500 and 700
-            let height = 500 + Math.random() * 200;  // Height between 500 and 700
+            let height = 300 + Math.random() * 200;  // Height between 500 and 700
             return {
-                top: Math.random() * (window.innerHeight - height / 2),
+                top: Math.random() * (window.innerHeight - height),
                 left: Math.random() * (window.innerWidth - width / 2),
                 width,
                 height
@@ -25,8 +25,6 @@
 <style>
     svg {
         display: block;
-        width: 200px;
-        height: 200px;
         position: absolute;
         z-index: -1;
     }
