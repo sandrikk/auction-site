@@ -2,8 +2,7 @@
 <script>
     import { onDestroy } from 'svelte';
 
-    export let startTime;
-    export let endTime;
+    export let book;
 
     let timeToStart = "";
     let timeToEnd = "";
@@ -11,8 +10,8 @@
     // Function to calculate and update time remaining
     function updateTimeRemaining() {
         const now = new Date();
-        const start = new Date(startTime);
-        const end = new Date(endTime);
+        const start = new Date(book.startTime);
+        const end = new Date(book.endTime);
 
         const startDiff = start - now;
         const endDiff = end - now;

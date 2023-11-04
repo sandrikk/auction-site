@@ -1,14 +1,11 @@
 <script>
     import Slider from "../components/Slider.svelte";
     import Loading from "../components/Loading.svelte";
-    import {onDestroy} from "svelte";
     import {tokenStore} from "../stores/tokenStore.js";
     import hammer from '../assets/hammer.gif'
     import BookDescription from "../components/BookDescription.svelte";
     import Bidding from "../components/Bidding.svelte";
 
-    let startTime = ""; // Variable to store time until the auction starts
-    let endTime = "";
     let highestBid = null;
     let showSuccessIcon = false;
     let errorMessage = "";
@@ -23,8 +20,6 @@
             // Parse the JSON data and assign it to the 'book' variable
             const book = await response.json();
             findHighestBid(book);
-            startTime = book.startTime;
-            endTime = book.endTime;
             return book;
         } else {
             throw { error: 'Something went wrong!' };
@@ -80,8 +75,6 @@
 
         <Bidding bind:amount
                 {book}
-                bind:startTime
-                bind:endTime
                 {highestBid}
                 {handleSubmit}
                 {errorMessage}

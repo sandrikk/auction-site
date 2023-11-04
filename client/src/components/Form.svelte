@@ -3,7 +3,7 @@
     import {tokenStore} from "../stores/tokenStore.js";
     import Button from "./Button.svelte";
 
-    export let mode = "login"; // default to "login", but can be set to "register"
+    export let mode = "login";
     let email = '';
     let password = '';
     let errorMessage = '';

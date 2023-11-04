@@ -63,6 +63,12 @@
         "username": "admintest",
         "amount": 180,
         "date": "03.11.2023 19:30"
+      },
+      {
+        "id": 9,
+        "username": "admintest",
+        "amount": 190,
+        "date": "04.11.2023 08:49"
       }
     ]
   },

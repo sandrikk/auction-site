@@ -70,6 +70,10 @@
         color: black;
     }
 
+    .book-list .book {
+        max-width: 200px;
+    }
+
     .book h1 {
         font-size: 18px;
     }
