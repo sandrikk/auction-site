@@ -144,6 +144,7 @@ export async function addBook(req, res) {
                 return res.status(400).send(`Field "${field}" must be a non-empty string.`);
             }
         }
+        bookData.bids = [];
 
         const books = await readBooksFile();
         books.push(bookData);
