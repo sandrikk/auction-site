@@ -5,6 +5,7 @@
     import hammer from '../assets/hammer.gif'
     import BookDescription from "../components/BookDescription.svelte";
     import Bidding from "../components/Bidding.svelte";
+    import router from "page";
 
     let highestBid = null;
     let showSuccessIcon = false;
@@ -43,11 +44,8 @@
             });
 
             if (response.status === 201) {
-                console.log('Successful');
                 showSuccessIcon = true;
                 setTimeout(() => showSuccessIcon = false, 3000); // Hide after 3 seconds
-                //router("/")
-
             } else {
                 errorMessage = (await response.json()).error;
             }
@@ -73,7 +71,8 @@
 
         <BookDescription {book}/>
 
-        <Bidding bind:amount
+        <Bidding
+                bind:amount
                 {book}
                 {highestBid}
                 {handleSubmit}

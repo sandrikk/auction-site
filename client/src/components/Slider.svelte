@@ -47,7 +47,7 @@
 
     .prev, .next {
         position: absolute;
-        top: 50%;
+        top: 200px;
         transform: translateY(-50%);
         font-size: 24px;
         cursor: pointer;
