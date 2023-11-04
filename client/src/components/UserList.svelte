@@ -39,3 +39,11 @@
 {:catch error}
     <p>Error!! {error.message}</p>
 {/await}
+
+<style>
+    @media (max-width: 550px) {
+        .user h1 {
+           font-size: 1em;
+       }
+    }
+</style>

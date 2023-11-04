@@ -1,10 +1,11 @@
 <!-- Header.svelte -->
 <script>
     import router from "page";
-
-    export let active;
     import logo from '../assets/logo-no-background.png'
     import {tokenStore} from "../stores/tokenStore.js";
+
+    export let active;
+
 
     const handleLogout = async () => {
         tokenStore.set(null);
@@ -63,5 +64,15 @@
 
     .logo {
         width: 7rem;
+    }
+
+    @media (max-width: 450px) {
+        .menu {
+            flex-direction: column;
+        }
+
+        .menu li {
+            text-align: center;
+        }
     }
 </style>

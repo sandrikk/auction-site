@@ -13,6 +13,7 @@
 <style>
     .book-description {
         width: 50%;
+        margin-left: 1rem;
     }
 
     h1, h2 {
@@ -22,5 +23,17 @@
     .go-back-link {
         color: var(--details);
         text-decoration: underline;
+    }
+
+    @media (max-width: 1285px) {
+        .book-description {
+            width: 30%;
+        }
+    }
+
+    @media (max-width: 1150px) {
+        .book-description {
+            width: 100%;
+        }
     }
 </style>

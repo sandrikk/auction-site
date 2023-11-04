@@ -2,9 +2,11 @@
     import SearchBar from "../components/SearchBar.svelte";
     import FilterSection from "../components/FilterSection.svelte";
     import BookList from "../components/BookList.svelte";
+    import RandomSVGs from "../components/RandomSVGs.svelte";
     let searchTerm = "";
 
 </script>
+<RandomSVGs />
 
 <div class="sidebar">
     <FilterSection />
@@ -64,5 +66,21 @@
 
     button {
         cursor: pointer;
+    }
+
+    @media (max-width: 850px) {
+        .sidebar {
+            width: 100%;
+        }
+
+        .content {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 550px) {
+        .content {
+            margin: 1rem 0 0;
+        }
     }
 </style>

@@ -30,4 +30,16 @@
     .book-biding {
         width: 25%;
     }
+
+    @media (max-width: 1285px) {
+        .book-biding {
+            width: 40%;
+        }
+    }
+
+    @media (max-width: 1150px) {
+        .book-biding {
+            width: 100%;
+        }
+    }
 </style>

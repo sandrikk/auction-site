@@ -93,4 +93,10 @@
     .form .message a, .form .error-message {
         color: #000000;
     }
+    @media (max-width: 450px) {
+        .page {
+            width: 100%;
+        }
+    }
+
 </style>

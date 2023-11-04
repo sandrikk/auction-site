@@ -91,4 +91,12 @@
     .book img:hover {
         transform: scale(0.9);
     }
+
+
+
+    @media (max-width: 850px) {
+        .book-list {
+            justify-content: center;
+        }
+    }
 </style>

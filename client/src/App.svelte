@@ -69,7 +69,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    height: 13vh;
+    min-height: 13vh;
   }
 
   main {
@@ -85,8 +85,29 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    height: 12vh;
+    min-height: 12vh;
   }
+
+  @media (max-width: 850px) {
+    main {
+      flex-direction: column;
+    }
+
+    footer {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 550px) {
+    header {
+      flex-direction: column;
+    }
+
+    main {
+      padding: 1rem 1rem;
+    }
+  }
+
 
 
 </style>

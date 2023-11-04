@@ -40,7 +40,7 @@
     }
 
     .book-image {
-        width: 300px;
+        width: 100%;
         height: 400px;
         margin: 0 auto;
     }
@@ -67,5 +67,21 @@
 
     .next {
         right: 0;
+    }
+
+    @media (max-width: 1285px) {
+        .image-slider {
+            width: 30%;
+        }
+    }
+
+    @media (max-width: 1150px) {
+        .image-slider {
+            width: 100%;
+        }
+
+        .book-image {
+            height: auto;
+        }
     }
 </style>

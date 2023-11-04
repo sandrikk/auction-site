@@ -5,7 +5,6 @@
     import hammer from '../assets/hammer.gif'
     import BookDescription from "../components/BookDescription.svelte";
     import Bidding from "../components/Bidding.svelte";
-    import router from "page";
 
     let highestBid = null;
     let showSuccessIcon = false;
@@ -112,4 +111,9 @@
         pointer-events: none;
     }
 
+    @media (max-width: 1150px) {
+        .book-layout {
+            flex-direction: column;
+        }
+    }
 </style>

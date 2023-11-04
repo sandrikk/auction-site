@@ -2,9 +2,10 @@
 <script>
     export let text;
     export let type;
+    export let width = '100%';
 </script>
 
-<button type={type}> {text} </button>
+<button type={type} style="width: {width};"> {text} </button>
 
 <style>
 
