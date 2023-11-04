@@ -1,3 +1,4 @@
+<!-- BookDescription.svelte -->
 <script>
     export let book;
 </script>

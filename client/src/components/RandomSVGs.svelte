@@ -1,3 +1,4 @@
+<!-- RandomSVGs.svelte -->
 <script>
     let positions = [];
 

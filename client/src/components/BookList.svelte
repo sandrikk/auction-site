@@ -1,3 +1,4 @@
+<!-- BookList.svelte -->
 <script>
     import {filterStore} from "../stores/filterStore.js";
     import Loading from "./Loading.svelte";

@@ -1,3 +1,4 @@
+<!-- Bidding.svelte -->
 <script>
     import Button from "./Button.svelte";
     import Timer from "./Timer.svelte";

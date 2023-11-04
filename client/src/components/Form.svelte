@@ -1,3 +1,4 @@
+<!-- Form.svelte -->
 <script>
     import router from 'page';
     import {tokenStore} from "../stores/tokenStore.js";

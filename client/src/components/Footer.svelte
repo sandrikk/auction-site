@@ -1,3 +1,4 @@
+<!-- Footer.svelte -->
 <script>
     export let active;
 </script>

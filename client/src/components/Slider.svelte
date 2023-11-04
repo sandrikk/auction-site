@@ -1,3 +1,4 @@
+<!-- Slider.svelte -->
 <script>
     export let book;
     let slideIndex = 0;

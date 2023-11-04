@@ -1,3 +1,4 @@
+<!-- Header.svelte -->
 <script>
     import router from "page";
 

@@ -1,3 +1,4 @@
+<!-- SearchBar.svelte -->
 <script>
     export let searchTerm = "";
 

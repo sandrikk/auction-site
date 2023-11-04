@@ -1,3 +1,4 @@
+<!-- Loading.svelte -->
 <script>
     import spinner from '../assets/spinner.svg'
 </script>

@@ -1,4 +1,3 @@
-
 <!-- Filter.svelte -->
 <script>
     import {filterStore} from "../stores/filterStore.js";

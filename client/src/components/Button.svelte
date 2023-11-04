@@ -1,3 +1,4 @@
+<!-- Button.svelte -->
 <script>
     export let text;
     export let type;
