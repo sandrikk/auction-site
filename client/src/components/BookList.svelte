@@ -2,6 +2,7 @@
 <script>
     import {filterStore} from "../stores/filterStore.js";
     import Loading from "./Loading.svelte";
+    import Book from "./Book.svelte";
 
     export let searchTerm;
 
@@ -46,11 +47,7 @@
             {#if book.title.toLowerCase().includes(searchTerm.toLowerCase())}
                 <a href={`/bookInfo/${book.isbn}`}>
                     <div class="book">
-                        <div class="image-container">
-                            <img src="{book.images[0]}" alt="book-image">
-                        </div>
-                        <h1>{book.title}</h1>
-                        <h2>{book.author}</h2>
+                        <Book bookData={book} mode="list" />
                     </div>
                 </a>
             {/if}
@@ -60,9 +57,6 @@
     <p>Error!! {error}</p>
 {/await}
 
-
-
-
 <style>
     .book-list {
         display: flex;
@@ -71,7 +65,7 @@
         color: black;
     }
 
-    .book-list .book {
+    .book {
         max-width: 200px;
     }
 
