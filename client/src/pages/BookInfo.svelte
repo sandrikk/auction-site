@@ -7,8 +7,8 @@
     import BookDescription from "../components/BookDescription.svelte";
     import Bidding from "../components/Bidding.svelte";
 
-    let timeToStart = ""; // Variable to store time until the auction starts
-    let timeToEnd = "";
+    let startTime = ""; // Variable to store time until the auction starts
+    let endTime = "";
     let highestBid = null;
     let showSuccessIcon = false;
     let errorMessage = "";
@@ -23,7 +23,8 @@
             // Parse the JSON data and assign it to the 'book' variable
             const book = await response.json();
             findHighestBid(book);
-            intervalId = setInterval(() => updateTimeRemaining(book), 1000);
+            startTime = book.startTime;
+            endTime = book.endTime;
             return book;
         } else {
             throw { error: 'Something went wrong!' };
@@ -67,49 +68,6 @@
         }
     }
 
-    // Function to calculate and update time remaining
-    function updateTimeRemaining(book) {
-        const now = new Date();
-        const startTime = new Date(book.startTime);
-        const endTime = new Date(book.endTime);
-
-        const startDiff = startTime - now;
-        const endDiff = endTime - now;
-
-        if (startDiff > 0) {
-            // Auction hasn't started yet
-            const startDays = Math.floor(startDiff / (1000 * 60 * 60 * 24));
-            const startHours = Math.floor((startDiff / (1000 * 60 * 60)) % 24);
-            const startMinutes = Math.floor((startDiff / 1000 / 60) % 60);
-            const startSeconds = Math.floor((startDiff / 1000) % 60);
-
-            timeToStart = `${startDays}d ${startHours}h ${startMinutes}m ${startSeconds}s`;
-            timeToEnd = "Auction hasn't started";
-        } else if (endDiff > 0) {
-            // Auction is ongoing
-            const endDays = Math.floor(endDiff / (1000 * 60 * 60 * 24));
-            const endHours = Math.floor((endDiff / (1000 * 60 * 60)) % 24);
-            const endMinutes = Math.floor((endDiff / 1000 / 60) % 60);
-            const endSeconds = Math.floor((endDiff / 1000) % 60);
-
-            timeToStart = "Auction has started";
-            timeToEnd = `${endDays}d ${endHours}h ${endMinutes}m ${endSeconds}s`;
-        } else {
-            // Auction has ended
-            timeToStart = "Auction has ended";
-            timeToEnd = "Auction has ended";
-        }
-    }
-
-
-    // Update time remaining every second
-    let intervalId;
-
-    // Clean up the interval when the component is destroyed
-    onDestroy(() => {
-        clearInterval(intervalId);
-    });
-
 </script>
 
 {#await getBookByIsbn()}
@@ -122,8 +80,8 @@
 
         <Bidding bind:amount
                 {book}
-                {timeToStart}
-                {timeToEnd}
+                bind:startTime
+                bind:endTime
                 {highestBid}
                 {handleSubmit}
                 {errorMessage}

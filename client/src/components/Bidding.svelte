@@ -1,8 +1,9 @@
 <script>
     import Button from "./Button.svelte";
+    import Timer from "./Timer.svelte";
     export let book;
-    export let timeToStart;
-    export let timeToEnd;
+    export let startTime;
+    export let endTime;
     export let highestBid;
     export let errorMessage;
     export let amount;
@@ -11,8 +12,7 @@
 </script>
 
 <div class="book-biding">
-    <p>Starts in: {timeToStart}</p>
-    <p>Ends in: {timeToEnd}</p>
+    <Timer bind:startTime bind:endTime />
     <p>Current bid: <span>{highestBid ? `€${highestBid}` : 'No bids yet'}</span></p>
     <form on:submit|preventDefault={handleSubmit}>
         <input name="bid" inputmode="numeric" pattern="[0-9]*" id="textField100" type="text" bind:value={amount} on:input={(e) => amount = e.target.value}>
