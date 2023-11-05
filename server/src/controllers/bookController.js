@@ -150,7 +150,7 @@ export async function addBook(req, res) {
         books.push(bookData);
         await writeToBooksFile(books);
 
-        res.status(201).send('Book added successfully.');
+        return res.status(201).json(bookData);
     } catch (error) {
         res.status(500).send('Error processing the request');
     }
@@ -203,7 +203,7 @@ export async function modifyBook(req, res) {
         books[bookIndex] = bookData;  // Update the book data
         await writeToBooksFile(books);
 
-        res.status(200).send('Book updated successfully.');
+        return res.status(200).json(books[bookIndex]);
     } catch (error) {
         res.status(500).send('Error processing the request');
     }
