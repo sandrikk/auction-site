@@ -2,6 +2,7 @@
 <script>
 
     import {tokenStore} from "../stores/tokenStore.js";
+    import User from "./User.svelte";
 
     async function getUsers() {
         const headers = {};
@@ -28,19 +29,9 @@
 {:then users}
     <div class="user-list">
         {#each users as user (user.id)}
-            <div class="user">
-                <h1>{user.email}</h1>
-            </div>
+            <User {user} />
         {/each}
     </div>
 {:catch error}
     <p>Error!! {error.message}</p>
 {/await}
-
-<style>
-    @media (max-width: 550px) {
-        .user h1 {
-           font-size: 1em;
-       }
-    }
-</style>
