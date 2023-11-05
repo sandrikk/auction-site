@@ -136,6 +136,9 @@ export async function addBook(req, res) {
         if (startTime >= endTime) {
             return res.status(400).send('Start time should be before end time.');
         }
+        if (endTime <= Date.now()) {
+            return res.status(400).send('End time should not be before the time what is now.');
+        }
 
         // Validate specific string fields to ensure they are non-empty strings
         const stringFields = ['title', 'author', 'category', 'language', 'cover', 'publisher'];
@@ -183,6 +186,9 @@ export async function modifyBook(req, res) {
         }
         if (startTime >= endTime) {
             return res.status(400).send('Start time should be before end time.');
+        }
+        if (endTime <= Date.now()) {
+            return res.status(400).send('End time should not be before the time what is now.');
         }
 
         // Validate specific string fields to ensure they are non-empty strings

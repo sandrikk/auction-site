@@ -155,6 +155,72 @@ client.test(
 );
 %}
 
+### Testing to post a new book as admin with startTime >= endTime (BAD WEATHER)
+
+POST http://localhost:3000/books
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "isbn": 9780451203595,
+  "title": "To Kill a Mockingbird - second version",
+  "author": "Harper Lee",
+  "category": "Classic Literature",
+  "language": "English",
+  "cover": "Hardcover",
+  "publisher": "J.D. Lippincott",
+  "numberOfPages": 196,
+  "releaseDate": "1960-10-05T10:30:00",
+  "startTime": "2023-10-06T10:30:00",
+  "endTime": "2023-10-05T10:30:00",
+  "images": [
+    "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
+    "https://i0.wp.com/www.raptisrarebooks.com/wp-content/uploads/2017/08/mockingbird-e1504020435651.jpg?ssl=1"
+  ]
+}
+
+> {%
+client.test(
+    "Testing to post a new book as admin with startTime >= endTime",
+    function() {
+        client.assert(response.status === 400, "Response status is not 400");
+    }
+);
+%}
+
+### Testing to post a new book as admin with endTime <= now (BAD WEATHER)
+
+POST http://localhost:3000/books
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "isbn": 9780451203595,
+  "title": "To Kill a Mockingbird - second version",
+  "author": "Harper Lee",
+  "category": "Classic Literature",
+  "language": "English",
+  "cover": "Hardcover",
+  "publisher": "J.D. Lippincott",
+  "numberOfPages": 196,
+  "releaseDate": "1960-10-05T10:30:00",
+  "startTime": "2023-10-06T10:30:00",
+  "endTime": "2023-10-07T10:30:00",
+  "images": [
+    "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
+    "https://i0.wp.com/www.raptisrarebooks.com/wp-content/uploads/2017/08/mockingbird-e1504020435651.jpg?ssl=1"
+  ]
+}
+
+> {%
+client.test(
+    "Testing to post a new book as admin with endTime <= now",
+    function() {
+        client.assert(response.status === 400, "Response status is not 400");
+    }
+);
+%}
+
 ### Testing to put a new book as admin
 
 PUT http://localhost:3000/books/9780451203594
@@ -192,6 +258,72 @@ client.test(
         var endTime = new Date(response.body.endTime);
         client.assert(endTime > new Date(), "Auction for this book cannot be closed.")
 
+    }
+);
+%}
+
+### Testing to put a new book as admin with endTime <= now (BAD WEATHER)
+
+PUT http://localhost:3000/books/9780451203594
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "isbn": 9780451203594,
+  "title": "To Kill a Mockingbird - ver2",
+  "author": "Harper Lee",
+  "category": "Classic Literature",
+  "language": "English",
+  "cover": "Hardcover",
+  "publisher": "J.D. Lippincott",
+  "numberOfPages": 196,
+  "releaseDate": "1960-10-05",
+  "startTime": "2023-10-05T10:30:00",
+  "endTime": "2023-10-06T10:30:00",
+  "images": [
+    "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
+    "https://i0.wp.com/www.raptisrarebooks.com/wp-content/uploads/2017/08/mockingbird-e1504020435651.jpg?ssl=1"
+  ]
+}
+
+> {%
+client.test(
+    "Testing to put a new book as admin with endTime <= now (BAD WEATHER)",
+    function() {
+        client.assert(response.status === 400, "Response status is not 400");
+    }
+);
+%}
+
+### Testing to put a new book as admin with startTime >= endTime (BAD WEATHER)
+
+PUT http://localhost:3000/books/9780451203594
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+{
+  "isbn": 9780451203594,
+  "title": "To Kill a Mockingbird - ver2",
+  "author": "Harper Lee",
+  "category": "Classic Literature",
+  "language": "English",
+  "cover": "Hardcover",
+  "publisher": "J.D. Lippincott",
+  "numberOfPages": 196,
+  "releaseDate": "1960-10-05",
+  "startTime": "2023-10-06T10:30:00",
+  "endTime": "2023-10-05T10:30:00",
+  "images": [
+    "https://upload.wikimedia.org/wikipedia/commons/4/4f/To_Kill_a_Mockingbird_%28first_edition_cover%29.jpg",
+    "https://i0.wp.com/www.raptisrarebooks.com/wp-content/uploads/2017/08/mockingbird-e1504020435651.jpg?ssl=1"
+  ]
+}
+
+> {%
+client.test(
+    "Testing to put a new book as admin with endTime <= now (BAD WEATHER)",
+    function() {
+        client.assert(response.status === 400, "Response status is not 400");
     }
 );
 %}
