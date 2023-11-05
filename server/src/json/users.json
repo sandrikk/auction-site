@@ -12,19 +12,5 @@
     "email": "admintest@example.com",
     "password": "$2b$12$R2f8D/LJZ0jGGNTIrDi7QepnpfYifAl4S56vjr2NkZdcyeu6hT29a",
     "isAdmin": true
-  },
-  {
-    "id": 3,
-    "username": "user33",
-    "email": "user33@example.com",
-    "password": "$2b$12$rjGHMxTh4YhYFU9WIWtRYeMFIp9ig7eW6yLC0LsHzjfrl0xVMXS8O",
-    "isAdmin": false
-  },
-  {
-    "id": 4,
-    "username": "newgroundai",
-    "email": "newgroundai@gmail.com",
-    "password": "$2b$12$crLVUnia9f7NdRt93Ts0s.vCXg.b2e8zOp7NLOIVId8Q0AWXyu7bu",
-    "isAdmin": false
   }
 ]
