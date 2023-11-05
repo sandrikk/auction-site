@@ -20,22 +20,17 @@
                 body: JSON.stringify({ email, password }),
             });
 
-            console.log('Response Status:', response.status);
-
             const data = await response.json();
 
             if (mode === "login" && response.status === 201) {
                 $tokenStore = `Bearer ${data.token}`;
-                console.log('Login successful' + $tokenStore);
                 router("/books");
             } else if (mode === "register" && response.status === 201) {
-                console.log('Registration successful');
                 router("/login");
             } else {
                 errorMessage = data.error || 'Unknown error';
             }
         } catch (error) {
-            console.error('Error:', error);
             errorMessage = 'An error occurred';
         }
     };

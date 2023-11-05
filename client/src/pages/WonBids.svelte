@@ -17,7 +17,7 @@
             return response.json();
         }
 
-        throw {error: 'Something went wrong!'}
+        throw {message: 'Cannot get your won bids'};
     }
 </script>
 
@@ -40,7 +40,7 @@
         {/each}
     </div>
 {:catch error}
-    <p>Error!! {error}</p>
+    <p>Error!! {error.message}</p>
 {/await}
 
 <style>
