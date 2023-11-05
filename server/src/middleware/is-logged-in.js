@@ -7,7 +7,6 @@ const isLoggedIn = (req, res, next) => {
     const token = req.get('Authorization');
 
     if (!token) {
-        console.log(token);
         return res.status(401).json({ error: 'You are not logged in.' });
     }
 
