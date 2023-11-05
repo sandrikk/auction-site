@@ -1,6 +1,6 @@
 [
   {
-    "isbn": 9780451203592,
+    "isbn": 9780451203581,
     "title": "To Kill a Mockingbird",
     "author": "Harper Lee",
     "category": "Classic Literature",
@@ -31,7 +31,7 @@
     ]
   },
   {
-    "isbn": 9780447893592,
+    "isbn": 9780447893582,
     "title": "Tights in Shimotakaido",
     "author": "Daido Moriyama",
     "category": "Arts",
@@ -56,7 +56,7 @@
     ]
   },
   {
-    "isbn": 9780451204789,
+    "isbn": 9780447893583,
     "title": "Lolita",
     "author": "Vladimir Nabokov",
     "category": "Novel",
@@ -75,7 +75,7 @@
     "bids": []
   },
   {
-    "isbn": 9780744800160,
+    "isbn": 9780447893584,
     "title": "The Catcher in the Rye",
     "author": "J.D. Salinger",
     "category": "Classic Literature",
@@ -100,7 +100,7 @@
     ]
   },
   {
-    "isbn": 9780743273565,
+    "isbn": 9780447893585,
     "title": "The Great Gatsby",
     "author": "F. Scott Fitzgerald",
     "category": "Classic Literature",
@@ -118,7 +118,7 @@
     "bids": []
   },
   {
-    "isbn": 9780802716094,
+    "isbn": 9780447893586,
     "title": "The Hobbit",
     "author": "J.R.R. Tolkien",
     "category": "Fantasy",
@@ -136,7 +136,7 @@
     "bids": []
   },
   {
-    "isbn": 9781610620953,
+    "isbn": 9780447893587,
     "title": "Don Quixote",
     "author": "Miguel de Cervantes",
     "category": "Classic Literature",
@@ -155,7 +155,7 @@
     "bids": []
   },
   {
-    "isbn": 9781610420953,
+    "isbn": 9780447893588,
     "title": "The House of the Vampire",
     "author": "George Sylvester Viereck",
     "category": "Fantasy",
@@ -173,7 +173,7 @@
     "bids": []
   },
   {
-    "isbn": 9781610745253,
+    "isbn": 9780447893589,
     "title": "Alice's Abenteuer im Wunderland",
     "author": "Lewis Carroll [Charles Lutwidge Dodgson]",
     "category": "Children's Books",
@@ -192,7 +192,7 @@
     "bids": []
   },
   {
-    "isbn": 9781234567890,
+    "isbn": 9780447893590,
     "title": "Amazing Spider-Man #3",
     "author": "Stan Lee, Steve Ditko",
     "category": "Comics",
@@ -209,7 +209,7 @@
     "bids": []
   },
   {
-    "isbn": "9781234567891",
+    "isbn": "9780447893591",
     "title": "Colombia Prima or South America Map",
     "author": "Louis Delarochette",
     "category": "Maps",
@@ -225,7 +225,7 @@
     "bids": []
   },
   {
-    "isbn": 9781234567892,
+    "isbn": 9780447893592,
     "title": "Histoires Extraordinaires",
     "author": "Edgar Allan Poe",
     "category": "Drama",
@@ -243,7 +243,7 @@
     "bids": []
   },
   {
-    "isbn": 9782345678901,
+    "isbn": 9780447893593,
     "title": "Ellen von Unwerth: Fräulein",
     "author": "TASCHEN, Ingrid Sischy",
     "category": "Arts",
