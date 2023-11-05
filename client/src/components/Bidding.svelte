@@ -2,6 +2,7 @@
 <script>
     import Button from "./Button.svelte";
     import Timer from "./Timer.svelte";
+    import Bid from "./Bid.svelte";
     export let book;
     export let highestBid;
     export let errorMessage;
@@ -25,7 +26,7 @@
 
     {#if book.bids && book.bids.length > 0}
         {#each book.bids as bid, i (bid)}
-            <p>{bid.username} did place a bid with an amount of {bid.amount}€ at {bid.date}</p>
+            <Bid {bid} />
         {/each}
     {/if}
 </div>
