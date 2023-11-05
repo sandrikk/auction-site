@@ -13,11 +13,15 @@
 <div class="book-biding">
     <Timer {book} />
     <p>Current bid: <span>{highestBid ? `€${highestBid}` : 'No bids yet'}</span></p>
+
+
     <form on:submit|preventDefault={handleSubmit}>
         <input name="bid" inputmode="numeric" pattern="[0-9]*" id="textField100" type="text" bind:value={amount} on:input={(e) => amount = e.target.value}>
         <p>{errorMessage}</p>
         <Button text="Place a bid" type="submit" />
     </form>
+
+
 
     {#if book.bids && book.bids.length > 0}
         {#each book.bids as bid, i (bid)}
