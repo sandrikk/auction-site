@@ -105,7 +105,6 @@ export async function placeBid(req, res) {
 
         res.status(201).json({ message: 'Bid placed successfully', bid: newBid });
     } catch (error) {
-        console.error('Error in placeBid:', error);
         res.status(500).send('Error processing the request');
     }
 }

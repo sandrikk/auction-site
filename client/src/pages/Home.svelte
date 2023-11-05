@@ -3,21 +3,20 @@
     import image from '../assets/book.png'
     import arrow from '../assets/arrow.png'
     import {onDestroy, onMount} from "svelte";
-    import Button from "../components/Button.svelte";
 
     let scale = 1;
     let rotate = 10;
 
     function updateTransform(scrollY) {
         scale = 1 + scrollY / 1000;
-        rotate = Math.max(10 - scrollY / 100, 0); // As we scroll down, rotate goes from 10 to 0 degrees
+        rotate = Math.max(10 - scrollY / 100, 0);
     }
 
 
     $: if (typeof window !== "undefined") {
         window.onscroll = () => {
             const scrollY = window.scrollY || window.pageYOffset;
-            updateTransform(scrollY); // Call updateTransform with the current scroll position
+            updateTransform(scrollY);
         };
     }
 

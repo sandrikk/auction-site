@@ -1,5 +1,7 @@
 <!-- Footer.svelte -->
 <script>
+    import {tokenStore} from "../stores/tokenStore.js";
+
     export let active;
 </script>
 
@@ -16,6 +18,11 @@
     <ul class="menu menu-footer">
         <li><a class:active={active === "/books"} href="/books">Books</a></li>
         <li><a class:active={active === "/users"} href="/users">Users</a></li>
+        {#if $tokenStore}
+            <li><a class:active={active === "/users/me/won"} href="/users/me/won">Won Bids</a></li>
+        {:else}
+            <li><a class="login" class:active={active === "/login"} href="/login">Login</a></li>
+        {/if}
     </ul>
 </nav>
 

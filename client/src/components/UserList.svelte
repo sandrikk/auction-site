@@ -9,19 +9,16 @@
             headers.Authorization = $tokenStore;
         }
 
-        // Fetch the JSON data from your books.json file
         const response = await fetch('http://localhost:3000/users', {
             headers: headers
         });
 
-        const respJson = await response.json();
 
         if (response.ok) {
-            // Parse the JSON data and assign it to the 'books' variable
-            return respJson;
+            return response.json();
         }
 
-        throw respJson;
+        throw {message: 'Cannot get users. You are not an admin'};
     }
 
 </script>

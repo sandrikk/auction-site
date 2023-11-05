@@ -17,19 +17,17 @@
 
         const response = await fetch('http://localhost:3000/books/' + params.isbn);
         if (response.ok) {
-            // Parse the JSON data and assign it to the 'book' variable
             const book = await response.json();
             findHighestBid(book);
             return book;
         } else {
-            throw { error: 'Something went wrong!' };
+            throw {message: 'Cannot get the book'};
         }
 
     }
 
     export const handleSubmit = async () => {
         try {
-            console.log(amount);
             const headers = {
                 'Content-Type': 'application/json',
             };
@@ -86,7 +84,7 @@
         <img src={hammer} alt="animation" class="animation" />
     {/if}
 {:catch error}
-    <p>Error: {error}</p>
+    <p>Error!! {error.message}</p>
 {/await}
 
 <style>

@@ -38,7 +38,6 @@ export function addToken(req, res) {
     const secret = 'fvsjbherbheirbrhvfvkcvnkgndhghdrjtfkyugfjdhtgrrsehtrdyufkylfkjrdthserashtrdjytkfuytjdrhsetrdfkuyjtdhrtscvkdvkcv';
     jwt.sign({ email, username, isAdmin }, secret, { algorithm: 'HS256' }, (err, token) => {
         if (err) {
-            console.error('Error creating token:', err);
             return res.status(500).json({ error: 'Failed to create token' });
         }
 

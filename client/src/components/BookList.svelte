@@ -33,7 +33,7 @@
             return response.json();
         }
 
-        throw {error: 'Something went wrong!'}
+        throw {error: 'Cannot get books!'}
     }
 
 </script>
