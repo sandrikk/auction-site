@@ -11,6 +11,19 @@ client.test(
 );
 %}
 
+### Testing to get the list of all bids for nonexisting book (BAD WEATHER)
+
+GET http://localhost:3000/books/0/bids
+
+> {%
+client.test(
+    "Testing to get the list of all bids for nonexisting book (BAD WEATHER)",
+    function() {
+        client.assert(response.status === 404, "Response status is not 404");
+    }
+);
+%}
+
 ### Testing to post a new bid for specific book with isbn 9780451203581 with admin
 
 POST http://localhost:3000//books/9780451203581/bids
@@ -55,6 +68,27 @@ client.test(
         client.assert(response.status === 201, "Response status is not 201");
         client.assert(response.body.id === 4, "Expected id - 4")
         client.assert(response.body.amount >= 0, "The amount must be positive number");
+    }
+);
+%}
+
+### Testing to post a new bid for specific book with isbn 9780451203581 not logged in (BAD WEATHER)
+
+POST http://localhost:3000//books/9780451203581/bids
+Content-Type: application/json
+
+{
+  "id": 8,
+  "username": "usertest",
+  "amount": 500,
+  "date": "04.11.2023 21:29"
+}
+
+> {%
+client.test(
+    "Testing to post a new bid for specific book with isbn 9780451203581 not logged in (BAD WEATHER)",
+    function() {
+        client.assert(response.status === 401, "Response status is not 401");
     }
 );
 %}
