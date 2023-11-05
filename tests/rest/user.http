@@ -13,42 +13,14 @@ client.test(
 );
 %}
 
-###Testing to get a user with username 'some_user'
-
-GET http://localhost:3000/users/1
-
-> {%
-client.test(
-    "Testing to get a user with username 'some_user'",
-    function() {
-        client.assert(response.status === 200, "There is no user with provided username.");
-        client.assert(response.body.username === "some_user", "Expected username - some_user")
-    }
-);
-%}
-
-###Testing to get a user with username 'some_userrr' (BAD WEATHER)
-
-GET http://localhost:3000/users/some_userrr
-
-> {%
-client.test(
-    "Testing to get a user with username 'some_userrr' (BAD WEATHER)",
-    function() {
-        client.assert(response.status === 404, "404. There is no user with provided username.");
-    }
-);
-%}
-
 ### Testing to post a new user
 
-POST http://localhost:3000/user
+POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "username": "some_user",
-  "password": "password",
-  "isAdmin": "true"
+  "email": "usertestfromtests@example.com",
+  "password": "usertestfromtests"
 }
 
 
@@ -57,48 +29,59 @@ client.test(
     "Testing to post a new user",
     function() {
         client.assert(response.status === 201, "Response status is not 201");
-        client.assert(response.username === "some_user", "Expected username - some_user")
     }
 );
 %}
 
-### Testing to post a new user (BAD WEATHER)
+### Testing to post a new user with no password (BAD WEATHER)
 
-POST http://localhost:3000/user
+POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "password": "password",
-  "isAdmin": "true"
+  "password": "usertestfromtests"
 }
 
 
 > {%
 client.test(
-    "Testing to post a new user",
+    "Testing to post a new user with no password (BAD WEATHER)",
     function() {
-        client.assert(response.status === 500, "500. The book object cannot be parsed correctly");
+        client.assert(response.status === 400, "Response status is not 400");
     }
 );
 %}
 
-### Testing to put a new user
+### Testing to post a new user with no email (BAD WEATHER)
 
-PUT http://localhost:3000/user
+POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "username": "some_userrr",
-  "password": "password",
-  "isAdmin": "true"
+  "email": "usertestfromtests@example.com"
 }
+
 
 > {%
 client.test(
-    "Testing to put a new user",
+    "Testing to post a new user with no email (BAD WEATHER)",
+    function() {
+        client.assert(response.status === 400, "Response status is not 400");
+    }
+);
+%}
+
+### Testing to delete user with id 3
+
+DELETE http://localhost:3000/users/3
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+> {%
+client.test(
+    "Testing to delete user with id 3",
     function() {
         client.assert(response.status === 200, "Response status is not 200");
-        client.assert(response.body.username === "some_userrr", "Users username in the response does not match the updated username");
     }
 );
 %}

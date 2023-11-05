@@ -7,12 +7,6 @@ const saltRounds = 12;
 
 
 export function getAllUsers (req, res) {
-    /*
-    const users = readUsersFile();
-    res.status(200).json(users);
-
-     */
-
     //Read the contents of the books.json file
     fs.readFile(usersFilePath, 'utf8', (err, data) => {
         if (err) {
@@ -31,6 +25,11 @@ export function getAllUsers (req, res) {
 
 export async function addUser(req, res) {
     const { email, password } = req.body;
+
+    // Check if email or password is not provided or is an empty string
+    if (!email || !password || email.trim() === '' || password.trim() === '') {
+        return res.status(400).json({ error: 'Email and password are required' });
+    }
 
     // Extract username from email
     const username = email.split('@')[0];
@@ -111,6 +110,34 @@ export async function getWonAuctions(req, res) {
     res.status(200).json(wonBooks);
     });
 
+}
+
+export async function deleteUser(req, res) {
+    const id = Number(req.params.id);
+
+    // Read the current users from the file
+    let users = readUsersFile();
+
+    // Find the index of the user with the matching ID
+    const userIndex = users.findIndex(user => user.id === id);
+
+    // If the user does not exist, return a 404 (Not Found)
+    if (userIndex === -1) {
+        return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Remove the user from the array
+    users.splice(userIndex, 1);
+
+    // Try to write the updated array back to the file
+    try {
+        writeUsersFile(users);
+        // Respond with a success message
+        res.status(200).json({ message: `User with ID ${userId} deleted successfully` });
+    } catch (error) {
+        // If an error occurs during file writing, respond with a server error
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 }
 
 

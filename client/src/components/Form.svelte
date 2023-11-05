@@ -25,9 +25,9 @@
             const data = await response.json();
 
             if (mode === "login" && response.status === 201) {
-                console.log('Login successful');
                 $tokenStore = `Bearer ${data.token}`;
-                router("/");
+                console.log('Login successful' + $tokenStore);
+                router("/books");
             } else if (mode === "register" && response.status === 201) {
                 console.log('Registration successful');
                 router("/login");

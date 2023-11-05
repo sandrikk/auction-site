@@ -7,6 +7,7 @@
     export let searchTerm;
 
     async function getBooks(category, language, cover) {
+
         let query = '';
 
         let queryOptions = [];
@@ -27,10 +28,8 @@
             query = '?' + queryOptions.join('&');
         }
 
-        // Fetch the JSON data from your books.json file
         const response = await fetch('http://localhost:3000/books' + query);
         if (response.ok) {
-            // Parse the JSON data and assign it to the 'books' variable
             return response.json();
         }
 

@@ -8,7 +8,7 @@
 
 
     const handleLogout = async () => {
-        tokenStore.set(null);
+        $tokenStore = null;
         router("/login");
     };
 
