@@ -59,7 +59,7 @@
     "isbn": 9780447893583,
     "title": "Lolita",
     "author": "Vladimir Nabokov",
-    "category": "Novel",
+    "category": "Novels",
     "language": "English",
     "cover": "Hardcover",
     "publisher": "Weidenfeld & Nicolson",
@@ -152,7 +152,20 @@
       "https://sothebys-md.brightspotcdn.com/dims4/default/14cb864/2147483647/strip/true/crop/1500x2000+0+0/resize/800x1067!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2Fab%2F82%2F4dbb07b44cbc80f8bf26b26cfb92%2F49605-3.jpg",
       "https://sothebys-md.brightspotcdn.com/dims4/default/b35ce74/2147483647/strip/true/crop/1500x2000+0+0/resize/800x1067!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2Fee%2F96%2F5b320046401d950f85dc5786b7b3%2F49605-9.jpg"
     ],
-    "bids": []
+    "bids": [
+      {
+        "id": 1,
+        "username": "admintest",
+        "amount": 50,
+        "date": "05.11.2023 11:42"
+      },
+      {
+        "id": 2,
+        "username": "admintest",
+        "amount": 400,
+        "date": "05.11.2023 11:47"
+      }
+    ]
   },
   {
     "isbn": 9780447893588,
@@ -199,6 +212,7 @@
     "language": "English",
     "cover": "Paperback",
     "publisher": "Marvel Comics",
+    "numberOfPages": 50,
     "releaseDate": "1963",
     "startTime": "2023-10-05T10:30:00",
     "endTime": "2023-12-06T10:30:00",
@@ -216,6 +230,7 @@
     "language": "English",
     "cover": "Paperback",
     "publisher": "William Faden, London",
+    "numberOfPages": 1,
     "releaseDate": "1900",
     "startTime": "2023-12-05T10:30:00",
     "endTime": "2023-12-10T10:30:00",
@@ -232,6 +247,7 @@
     "language": "French",
     "cover": "Hardcover",
     "publisher": "Michel Levy Freres",
+    "numberOfPages": 300,
     "releaseDate": "1856",
     "startTime": "2023-10-05T10:30:00",
     "endTime": "2023-11-04T10:30:00",
@@ -244,19 +260,20 @@
   },
   {
     "isbn": 9780447893593,
-    "title": "Ellen von Unwerth: Fräulein",
-    "author": "TASCHEN, Ingrid Sischy",
-    "category": "Arts",
-    "language": "English, French, German",
+    "title": "Marquis de Sade",
+    "author": "La Nouvelle Justine",
+    "category": "Novels",
+    "language": "French",
     "cover": "Hardcover",
-    "publisher": "TASCHEN",
-    "releaseDate": "2009",
+    "publisher": "Otodecimo",
+    "numberOfPages": 196,
+    "releaseDate": "1797",
     "startTime": "2023-10-05T10:30:00",
     "endTime": "2023-12-06T10:30:00",
     "images": [
-      "https://sothebys-md.brightspotcdn.com/dims4/default/5c12a7e/2147483647/strip/true/crop/1188x1188+0+0/resize/800x800!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2F97%2F6f%2F9c06aa37482592ab3f68e5fd7666%2Ffraulein-ellen-von-unwerth-1.png",
-      "https://sothebys-md.brightspotcdn.com/dims4/default/0c5c757/2147483647/strip/true/crop/1701x1701+0+0/resize/800x800!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2F9a%2F5b%2F3506dfe14c3cb72a0443a86ffe1d%2Fck3sd1.jpg",
-      "https://sothebys-md.brightspotcdn.com/dims4/default/7b744ba/2147483647/strip/true/crop/1706x1706+0+0/resize/800x800!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2Fcf%2Fe8%2Ffe9f83c048d79ec0fa50cefafb4d%2Fck3sd2.jpg"
+      "https://sothebys-md.brightspotcdn.com/dims4/default/757ac19/2147483647/strip/true/crop/1107x1107+0+0/resize/800x800!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2F7e%2Ff1%2F94b3ff4f460eaedc895c2d5ba83b%2Fmarquis-de-sade-la-nouvelle-justine-the-new-justine-first-edition.jpg",
+      "https://sothebys-md.brightspotcdn.com/dims4/default/b1655bd/2147483647/strip/true/crop/1353x1353+0+0/resize/800x800!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2F39%2Fdc%2Fc0499c3a471386bbe7e472264717%2F1370760-2.jpg",
+      "https://sothebys-md.brightspotcdn.com/dims4/default/f659faf/2147483647/strip/true/crop/1334x1973+0+0/resize/800x1183!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fmedia-desk%2F07%2F98%2F13c620444ee395be2674ad56bfa0%2F1370760-3.jpg"
     ],
     "bids": []
   }

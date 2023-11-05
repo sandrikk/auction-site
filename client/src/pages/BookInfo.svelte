@@ -54,7 +54,9 @@
     };
 
     function findHighestBid(book) {
-        if (book && book.bids) {
+        if (!book || !book.bids || book.bids.length === 0) {
+            return null;
+        } else {
             const bids = book.bids.map(bid => Number(bid.amount));
             highestBid = Math.max(...bids);
         }
