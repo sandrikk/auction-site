@@ -103,7 +103,7 @@ export async function placeBid(req, res) {
 
         await writeToBooksFile(books);
 
-        res.status(201).json({ message: 'Bid placed successfully', bid: newBid });
+        res.status(201).json(newBid);
     } catch (error) {
         res.status(500).send('Error processing the request');
     }
