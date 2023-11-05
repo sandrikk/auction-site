@@ -85,3 +85,48 @@ client.test(
     }
 );
 %}
+
+### Testing to delete user with id 10 (BAD WEATHER)
+
+DELETE http://localhost:3000/users/10
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+> {%
+client.test(
+    "Testing to delete user with id 10 (BAD WEATHER)",
+    function() {
+        client.assert(response.status === 404, "Response status is not 404");
+    }
+);
+%}
+
+### Testing to get all won auctions for specific user - admin
+
+GET http://localhost:3000/users/me/won
+Content-Type: application/json
+Authorization: Bearer {{admin_token}}
+
+> {%
+client.test(
+    "Testing to get all won auctions for specific user - admin",
+    function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    }
+);
+%}
+
+### Testing to get all won auctions for specific user - user
+
+GET http://localhost:3000/users/me/won
+Content-Type: application/json
+Authorization: Bearer {{user_token}}
+
+> {%
+client.test(
+    "Testing to get all won auctions for specific user - user",
+    function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    }
+);
+%}

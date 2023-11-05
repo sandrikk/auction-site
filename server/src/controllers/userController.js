@@ -117,7 +117,7 @@ export async function deleteUser(req, res) {
     try {
         await writeToUsersFile(users);
         // Respond with a success message
-        res.status(200).json({ message: `User with ID ${userId} deleted successfully` });
+        res.status(200).json({ message: `User with ID ${id} deleted successfully` });
     } catch (error) {
         // If an error occurs during file writing, respond with a server error
         res.status(500).send('Error processing the request');
