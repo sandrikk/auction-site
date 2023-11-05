@@ -44,7 +44,7 @@
                 showSuccessIcon = true;
                 setTimeout(() => showSuccessIcon = false, 3000); // Hide after 3 seconds
             } else {
-                errorMessage = (await response.json().error);
+                errorMessage = (await response.json()).error;
             }
         } catch (error) {
             errorMessage = 'An error occurred';
